@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Zambezi Network Solutions</title>
+
+        <!-- Tailwind CSS -->
+        <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+        <script src="./3.4.16"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: {
+                                50: "#ebf5ff",
+                                100: "#e1effe",
+                                200: "#c3ddfd",
+                                300: "#a4cafe",
+                                400: "#76a9fa",
+                                500: "#3f83f8",
+                                600: "#1c64f2",
+                                700: "#1a56db",
+                                800: "#1e429f",
+                                900: "#233876",
+                            },
+                        },
+                        fontFamily: {
+                            sans: ["Poppins", "sans-serif"],
+                            heading: ["Nunito Sans", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+        <!-- Boxicons -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+        <style>
+            /* Custom animations */
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
+            }
+
+            @keyframes spin {
+                from {
+                    transform: rotate(0deg);
+                }
+
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .animate-spin-slow {
+                animation: spin 3s linear infinite;
+            }
+
+            .animate-fade-in {
+                animation: fadeIn 1s ease-in-out forwards;
+            }
+
+            /* Preloader fade out */
+            .fade-out {
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.5s ease, visibility 0.5s ease;
+            }
+        </style>
+    </head>
+
+    <body class="font-sans text-gray-800 bg-gray-50">
+        <!-- Preloader -->
+        <div id="preloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white">
+            <div class="w-24 h-24 mb-6 rounded-full overflow-hidden">
+                <img src="./assets/images/logo.jpeg" alt="Zambezi Logo" class="w-full h-full object-contain" />
+            </div>
+            <div class="w-16 h-16 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin-slow"></div>
+            <h1 class="mt-6 text-2xl font-bold text-primary-700 tracking-wider font-heading">Zambezi Network Solutions</h1>
+        </div>
+
+        <!-- Navbar -->
+        <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 bg-white shadow-md transition-all duration-300">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center justify-between h-20">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0">
+                        <a href="#home" class="flex items-center rounded-full overflow-hidden">
+                            <img src="./assets/images/logo.jpeg" alt="Logo" class="h-12 w-auto" />
+                        </a>
+                    </div>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-center space-x-8">
+                            <a href="#home" class="text-primary-700 font-medium hover:text-primary-500 transition-colors duration-200 px-3 py-2 border-b-2 border-primary-500">Home</a>
+                            <a href="#service-head" class="text-gray-600 font-medium hover:text-primary-500 transition-colors duration-200 px-3 py-2 border-b-2 border-transparent hover:border-primary-300">Services</a>
+                            <a href="#solutions" class="text-primary-700 font-medium hover:text-primary-500 transition-colors duration-200 px-3 py-2 border-b-2 border-primary-500">Solutions</a>
+                            <a href="#contact-section" class="text-gray-600 font-medium hover:text-primary-500 transition-colors duration-200 px-3 py-2 border-b-2 border-transparent hover:border-primary-300">Contact Us</a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden">
+                        <button id="mobile-menu-button" class="text-gray-600 hover:text-primary-500 focus:outline-none" onclick="handleMenuToggle">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div id="mobile-menu" class="md:hidden hidden pb-4">
+                    <div class="flex flex-col space-y-2 px-2 pt-2">
+                        <a href="#home" class="text-primary-700 font-medium block px-3 py-2 rounded-md hover:bg-primary-50 transition-colors duration-200">Home</a>
+                        <a href="#service-head" class="text-gray-600 font-medium block px-3 py-2 rounded-md hover:bg-primary-50 transition-colors duration-200">Services</a>
+                        <a href="#solutions" class="text-gray-600 font-medium block px-3 py-2 rounded-md hover:bg-primary-50 transition-colors duration-200">Solutions</a>
+                        <a href="#contact-section" class="text-gray-600 font-medium block px-3 py-2 rounded-md hover:bg-primary-50 transition-colors duration-200">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="pt-20 sm:pt-0">
+            <!-- Hero Section -->
+            <section id="home" class="bg-gradient-to-br from-primary-600 to-primary-800 text-white min-h-screen flex items-center">
+                <div class="container mx-auto px-4 py-16 md:py-24">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                        <div class="animate-fade-in" style="animation-delay: 0.3s">
+                            <div class="inline-flex items-center bg-primary-700 bg-opacity-50 rounded-full px-4 py-1 mb-6">
+                                <i class="bx bx-tv mr-2"></i>
+                                <span class="text-sm font-medium">Zambezi Network Solutions</span>
+                            </div>
+
+                            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold font-heading leading-tight mb-6">Zambezi Network Solutions & Managed Services</h1>
+
+                            <div class="space-y-4 text-lg text-primary-50">
+                                <p>Zambezi Networks Solutions unlocks business value through technology for organizations seeking fast innovation with a local partner offering global expertise.</p>
+                                <p>Our hands-on approach and close client relationships enable us to implement solutions that enhance efficiency, effectiveness, and intelligence within your organization.</p>
+                                <p>We combine agility and rapid implementation through a DevOps approach to deliver innovative solutions in quality engineering.</p>
+                                <p>Cloud and application development, all driven by AI, data, and automation.</p>
+                            </div>
+
+                            <div class="mt-8 flex flex-wrap gap-4">
+                                <a href="#service-head" class="inline-flex items-center px-6 py-3 rounded-lg bg-white text-primary-700 font-medium hover:bg-primary-50 transition-colors duration-200">
+                                    Our Services
+                                    <i class="bx bx-right-arrow-alt ml-2"></i>
+                                </a>
+                                <a href="#contact-section" class="inline-flex items-center px-6 py-3 rounded-lg bg-primary-700 text-white font-medium hover:bg-primary-600 border border-primary-500 transition-colors duration-200"> Contact Us </a>
+                            </div>
+                        </div>
+
+                        <div class="hidden lg:flex justify-center animate-fade-in" style="animation-delay: 0.6s">
+                            <div class="relative">
+                                <div class="absolute inset-0 bg-primary-400 rounded-full opacity-20 blur-2xl transform -translate-x-4 translate-y-4"></div>
+                                <img src="./assets/images/bs.jpeg" alt="Network Solutions" class="relative z-10 rounded-lg shadow-2xl" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section class="py-16 bg-gray-50" id="service-head">
+                <!-- IT Solutions -->
+                <div class="bg-white overflow-hidden" id="it">
+                    <div class="container mx-auto px-4">
+                        <div class="flex flex-col lg:flex-row items-center">
+                            <div class="w-full lg:w-1/2 py-12 lg:pr-12">
+                                <h2 class="text-3xl font-bold text-primary-700 mb-4 font-heading">Advanced IT Solutions</h2>
+                                <div class="space-y-4 text-gray-700">
+                                    <p>
+                                        Transform your business with our cutting-edge IT services. We specialize in delivering innovative solutions tailored to your needs, from seamless networking to advanced cloud computing and data management. Our team ensures unmatched reliability, security, and optimal performance at every stage, keeping your company competitive in a fast-evolving digital
+                                        landscape.
+                                    </p>
+                                    <p>Trust our expertise to elevate your operations, streamline processes, and empower your business for long-term growth, efficiency, and success.</p>
+                                </div>
+                                <button class="mt-8 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition duration-300 font-medium">Explore IT Services</button>
+                            </div>
+                            <div class="w-full lg:w-1/2 p-4">
+                                <div class="relative">
+                                    <div class="absolute inset-0 bg-primary-400 rounded-lg opacity-20 blur-xl transform translate-x-2 translate-y-2"></div>
+                                    <img src="assets/images/it-service.jpeg" alt="IT Service Image" class="relative z-10 w-full h-auto rounded-lg shadow-lg" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Consultancy & Implementation -->
+                <div class="bg-primary-50 overflow-hidden mt-12" id="consultancy">
+                    <div class="container mx-auto px-4">
+                        <div class="flex flex-col-reverse lg:flex-row items-center">
+                            <div class="w-full lg:w-1/2 p-4">
+                                <div class="relative">
+                                    <div class="absolute inset-0 bg-primary-400 rounded-lg opacity-20 blur-xl transform -translate-x-2 translate-y-2"></div>
+                                    <img src="assets/images/system-consult.jpeg" alt="Consultancy Image" class="relative z-10 w-full h-auto rounded-lg shadow-lg" />
+                                </div>
+                            </div>
+                            <div class="w-full lg:w-1/2 py-12 lg:pl-12">
+                                <h2 class="text-3xl font-bold text-primary-700 mb-4 font-heading">System Consultancy & Implementation</h2>
+                                <div class="space-y-4 text-gray-700">
+                                    <p>We offer comprehensive system consultancy and implementation services, covering design, development, deployment, and support of tailored business applications.</p>
+                                    <p>At Zambezi, our experienced team brings expertise across sectors including public/government, fintech, banking, insurance, education, and healthcare. We ensure seamless integration and impactful solutions that address unique client needs and challenges, driving success in diverse business environments.</p>
+                                </div>
+                                <button class="mt-8 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition duration-300 font-medium">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Software Development -->
+                <div class="bg-white overflow-hidden mt-12" id="software">
+                    <div class="container mx-auto px-4">
+                        <div class="flex flex-col lg:flex-row items-center">
+                            <div class="w-full lg:w-1/2 py-12 lg:pr-12">
+                                <h2 class="text-3xl font-bold text-primary-700 mb-4 font-heading">Innovative Software Development</h2>
+                                <div class="space-y-4 text-gray-700">
+                                    <p>Empower your business with tailored software solutions that enhance productivity and innovation. Our experts develop custom software to meet your specific needs, ensuring seamless integration and performance.</p>
+                                    <p>From intuitive interfaces to scalable architectures, we deliver efficient, reliable solutions that streamline processes and transform workflows. Partner with us for sustainable growth and success in today's dynamic business landscape.</p>
+                                </div>
+                                <button class="mt-8 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition duration-300 font-medium">Learn More</button>
+                            </div>
+                            <div class="w-full lg:w-1/2 p-4">
+                                <div class="relative">
+                                    <div class="absolute inset-0 bg-primary-400 rounded-lg opacity-20 blur-xl transform translate-x-2 translate-y-2"></div>
+                                    <img src="assets/images/bs.jpeg" alt="Software Image" class="relative z-10 w-full h-auto rounded-lg shadow-lg" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Solutions -->
+                <div class="bg-primary-50 overflow-hidden mt-12" id="business">
+                    <div class="container mx-auto px-4">
+                        <div class="flex flex-col-reverse lg:flex-row items-center">
+                            <div class="w-full lg:w-1/2 p-4">
+                                <div class="relative">
+                                    <div class="absolute inset-0 bg-primary-400 rounded-lg opacity-20 blur-xl transform -translate-x-2 translate-y-2"></div>
+                                    <img src="assets/images/bs.jpeg" alt="Business Image" class="relative z-10 w-full h-auto rounded-lg shadow-lg" />
+                                </div>
+                            </div>
+                            <div class="w-full lg:w-1/2 py-12 lg:pl-12">
+                                <h2 class="text-3xl font-bold text-primary-700 mb-4 font-heading">Comprehensive Business Solutions</h2>
+                                <div class="space-y-4 text-gray-700">
+                                    <p>Unlock your organization's potential with our strategic consulting and comprehensive business support services. We partner with you to identify opportunities, streamline operations, and implement effective strategies that foster growth and resilience.</p>
+                                    <p>Our tailored approach ensures that your unique challenges are met with innovative solutions, empowering your organization to navigate complexities and achieve sustainable success in an ever-evolving market landscape.</p>
+                                </div>
+                                <button class="mt-8 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition duration-300 font-medium">Get Started</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Risk Assessment -->
+                <div class="bg-white overflow-hidden mt-12" id="risk">
+                    <div class="container mx-auto px-4">
+                        <div class="flex flex-col lg:flex-row items-center">
+                            <div class="w-full lg:w-1/2 py-12 lg:pr-12">
+                                <h2 class="text-3xl font-bold text-primary-700 mb-4 font-heading">Technology Risk Assessment / Risk Consultancy</h2>
+                                <div class="space-y-4 text-gray-700">
+                                    <p>Technology risk, or IT risk, refers to the potential for technology failures to disrupt business operations, encompassing cyber attacks, service outages, outdated equipment, and more.</p>
+                                    <p>Zambezi is here to help you safeguard your business by identifying data vulnerabilities, analyzing and prioritizing risks, setting risk tolerance, and establishing robust processes. Our solutions focus on risk mitigation and continuous monitoring to keep your operations resilient and secure.</p>
+                                </div>
+                                <button class="mt-8 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition duration-300 font-medium">Learn More</button>
+                            </div>
+                            <div class="w-full lg:w-1/2 p-4">
+                                <div class="relative">
+                                    <div class="absolute inset-0 bg-primary-400 rounded-lg opacity-20 blur-xl transform translate-x-2 translate-y-2"></div>
+                                    <img src="assets/images/risk.jpeg" alt="Risk Assessment Image" class="relative z-10 w-full h-auto rounded-lg shadow-lg" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="py-16 bg-white" id="about-section">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col lg:flex-row items-center gap-12">
+                        <!-- Image Carousel -->
+                        <div class="w-full lg:w-5/12 h-full">
+                            <div id="aboutCarousel" class="relative h-full rounded-xl overflow-hidden shadow-xl">
+                                <!-- Carousel images -->
+                                <div class="carousel-wrapper relative h-[30rem]">
+                                    <div class="carousel-slide active absolute inset-0 transition-opacity duration-500">
+                                        <img src="./assets/images/risk.jpeg" class="w-full h-full object-cover rounded-xl" alt="About Photo 1" />
+                                    </div>
+                                    <div class="carousel-slide hidden absolute inset-0 transition-opacity duration-500">
+                                        <img src="./assets/images/system-consult.jpeg" class="w-full h-full object-cover rounded-xl" alt="About Photo 2" />
+                                    </div>
+                                    <div class="carousel-slide hidden absolute inset-0 transition-opacity duration-500">
+                                        <img src="./assets/images/it-service.jpeg" class="w-full h-full object-cover rounded-xl" alt="About Photo 3" />
+                                    </div>
+                                </div>
+
+                                <!-- Controls -->
+                                <button class="carousel-prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full shadow-md hover:bg-white transition duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                                <button class="carousel-next absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full shadow-md hover:bg-white transition duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+
+                                <!-- Indicators -->
+                                <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+                                    <button class="carousel-indicator w-3 h-3 rounded-full bg-primary-600" data-index="0"></button>
+                                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300" data-index="1"></button>
+                                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300" data-index="2"></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="w-full lg:w-7/12 mt-8 lg:mt-0">
+                            <h2 class="text-3xl font-bold text-primary-800 mb-6 font-heading">Empowering Innovation Through Technology and Client Partnership.</h2>
+                            <p class="text-gray-700 mb-8">At ZNS-Kenya, we're passionate about technology and building strong relationships with our clients. We leverage cutting-edge technology to deliver innovative results and best-in-class service, backed by our comprehensive solutions portfolio and a client-centric model.</p>
+
+                            <h3 class="text-2xl font-bold text-primary-700 mb-4 font-heading">Data Privacy (ODPC Certification) Consultancy</h3>
+                            <div class="space-y-4 text-gray-700">
+                                <p>Data privacy has become a key aspect of every business in Kenya and globally. With the enactment of the Data Protection Act 2019 and the subsequent establishment of the Office of the Data Protection Commissioner (ODPC-Kenya), every data handling and or processing institution must align with the requirement.</p>
+                                <p>Zambezi Technologies has successfully hand held institutions towards achieving Data Protection certification from the ODPC, data privacy sensitization/training, and policy implementation.</p>
+                            </div>
+
+                            <div class="mt-8 flex space-x-4">
+                                <button class="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition duration-300 font-medium">Learn More</button>
+                                <a href="#contact-section" class="px-6 py-3 border border-primary-600 text-primary-600 rounded-lg hover:bg-primary-50 transition duration-300 font-medium">Contact Us</a href="#contact-section">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our Solutions Section -->
+            <section class="py-16 bg-gray-50" id="solutions">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl font-bold text-primary-800 mb-10 font-heading">Our Solutions</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- IT Consulting -->
+                        <div class="perspective-1000">
+                            <div class="flip-card h-96 w-full transform-gpu transition-transform duration-700 relative preserve-3d hover:rotate-y-180">
+                                <!-- Front side -->
+                                <div class="absolute inset-0 bg-white rounded-xl shadow-lg p-6 flex flex-col items-center justify-center backface-hidden">
+                                    <div class="mb-6 w-24 h-24 rounded-full overflow-hidden bg-primary-100 p-1">
+                                        <img src="assets/images/it-service.jpeg" alt="IT Consulting Icon" class="w-full h-full object-cover rounded-full" />
+                                    </div>
+                                    <h3 class="text-xl font-bold text-primary-700 text-center mb-2">Elevate Your Business with Expert IT Consulting</h3>
+                                </div>
+
+                                <!-- Back side -->
+                                <div class="absolute inset-0 bg-primary-700 text-white rounded-xl shadow-lg p-6 flex flex-col backface-hidden rotate-y-180">
+                                    <p class="font-medium mb-4">Our IT consultants provide tailored solutions that drive growth.</p>
+                                    <ul class="space-y-2 text-sm flex-grow">
+                                        <li class="flex items-start">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span><span class="font-semibold">Strategic Planning:</span> Technology roadmap aligned with your business goals.</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span><span class="font-semibold">Implementation:</span> Integrate new systems seamlessly.</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span><span class="font-semibold">Optimization:</span> Maximize IT infrastructure efficiency.</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span><span class="font-semibold">Support:</span> Ongoing assistance and troubleshooting.</span>
+                                        </li>
+                                    </ul>
+                                    <a href="contactus.html" class="mt-4 inline-flex items-center text-primary-200 hover:text-white font-medium transition-colors duration-200">
+                                        <span>Learn More</span>
+                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cloud Solutions -->
+                        <div class="perspective-1000">
+                            <div class="flip-card h-96 w-full transform-gpu transition-transform duration-700 relative preserve-3d hover:rotate-y-180">
+                                <!-- Front side -->
+                                <div class="absolute inset-0 bg-white rounded-xl shadow-lg p-6 flex flex-col items-center justify-center backface-hidden">
+                                    <div class="mb-6 w-24 h-24 rounded-full overflow-hidden bg-primary-100 p-1">
+                                        <img src="assets/images/system-consult.jpeg" alt="Cloud Solutions Icon" class="w-full h-full object-cover rounded-full" />
+                                    </div>
+                                    <h3 class="text-xl font-bold text-primary-700 text-center mb-2">Unlock the Power of the Cloud</h3>
+                                </div>
+
+                                <!-- Back side -->
+                                <div class="absolute inset-0 bg-primary-700 text-white rounded-xl shadow-lg p-6 flex flex-col backface-hidden rotate-y-180">
+                                    <p class="font-medium mb-4">Our cloud services meet the unique needs of businesses of all sizes.</p>
+                                    <ul class="space-y-2 text-sm flex-grow">
+                                        <li class="flex items-start">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span><span class="font-semibold">Scalability:</span> Adapt to business demands.</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span><span class="font-semibold">Flexibility:</span> Access data and apps from anywhere.</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span><span class="font-semibold">Cost-Efficiency:</span> Reduce infrastructure costs.</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span><span class="font-semibold">Security:</span> Advanced protection for your data.</span>
+                                        </li>
+                                    </ul>
+                                    <a href="contactus.html" class="mt-4 inline-flex items-center text-primary-200 hover:text-white font-medium transition-colors duration-200">
+                                        <span>Learn More</span>
+                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cloud Offerings -->
+                        <div class="perspective-1000">
+                            <div class="flip-card h-96 w-full transform-gpu transition-transform duration-700 relative preserve-3d hover:rotate-y-180">
+                                <!-- Front side -->
+                                <div class="absolute inset-0 bg-white rounded-xl shadow-lg p-6 flex flex-col items-center justify-center backface-hidden">
+                                    <div class="mb-6 w-24 h-24 rounded-full overflow-hidden bg-primary-100 p-1">
+                                        <img src="assets/images/bs.jpeg" alt="Cloud Offerings Icon" class="w-full h-full object-cover rounded-full" />
+                                    </div>
+                                    <h3 class="text-xl font-bold text-primary-700 text-center mb-2">Cloud Offerings</h3>
+                                </div>
+
+                                <!-- Back side -->
+                                <div class="absolute inset-0 bg-primary-700 text-white rounded-xl shadow-lg p-6 flex flex-col overflow-auto backface-hidden rotate-y-180">
+                                    <p class="font-medium mb-2">Our cloud offerings include:</p>
+                                    <ul class="space-y-1 text-sm flex-grow">
+                                        <li class="flex items-center">
+                                            <svg class="w-4 h-4 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>Cloud Storage</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg class="w-4 h-4 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>Microsoft Office 365</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg class="w-4 h-4 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>Microsoft Azure</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg class="w-4 h-4 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>Cloud Backup</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg class="w-4 h-4 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>VoIP</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg class="w-4 h-4 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>Managed Hosting</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg class="w-4 h-4 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>Microsoft Teams</span>
+                                        </li>
+                                    </ul>
+                                    <a href="contactus.html" class="mt-4 inline-flex items-center text-primary-200 hover:text-white font-medium transition-colors duration-200">
+                                        <span>Learn More</span>
+                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- National IT Support -->
+                        <div class="perspective-1000">
+                            <div class="flip-card h-96 w-full transform-gpu transition-transform duration-700 relative preserve-3d hover:rotate-y-180">
+                                <!-- Front side -->
+                                <div class="absolute inset-0 bg-white rounded-xl shadow-lg p-6 flex flex-col items-center justify-center backface-hidden">
+                                    <div class="mb-6 w-24 h-24 rounded-full overflow-hidden bg-primary-100 p-1">
+                                        <img src="assets/images/risk.jpeg" alt="National IT Support Icon" class="w-full h-full object-cover rounded-full" />
+                                    </div>
+                                    <h3 class="text-xl font-bold text-primary-700 text-center mb-2">National IT Support, Local Expertise</h3>
+                                </div>
+
+                                <!-- Back side -->
+                                <div class="absolute inset-0 bg-primary-700 text-white rounded-xl shadow-lg p-6 flex flex-col backface-hidden rotate-y-180">
+                                    <p class="font-medium mb-4">We offer reliable and comprehensive IT support across Kenya.</p>
+                                    <ul class="space-y-2 text-sm flex-grow">
+                                        <li class="flex items-center">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>Expert IT Consulting</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>24/7 Helpdesk Support</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>Managed IT Services</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>National Reach</span>
+                                        </li>
+                                    </ul>
+                                    <a href="contactus.html" class="mt-4 inline-flex items-center text-primary-200 hover:text-white font-medium transition-colors duration-200">
+                                        <span>Learn More</span>
+                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Emergency IT Support -->
+                        <div class="perspective-1000">
+                            <div class="flip-card h-96 w-full transform-gpu transition-transform duration-700 relative preserve-3d hover:rotate-y-180">
+                                <!-- Front side -->
+                                <div class="absolute inset-0 bg-white rounded-xl shadow-lg p-6 flex flex-col items-center justify-center backface-hidden">
+                                    <div class="mb-6 w-24 h-24 rounded-full overflow-hidden bg-primary-100 p-1">
+                                        <img src="assets/images/system-consult.jpeg" alt="Emergency IT Support Icon" class="w-full h-full object-cover rounded-full" />
+                                    </div>
+                                    <h3 class="text-xl font-bold text-primary-700 text-center mb-2">Emergency IT Support</h3>
+                                </div>
+
+                                <!-- Back side -->
+                                <div class="absolute inset-0 bg-primary-700 text-white rounded-xl shadow-lg p-6 flex flex-col backface-hidden rotate-y-180">
+                                    <p class="font-medium mb-4">Our rapid response team minimizes downtime during emergencies.</p>
+                                    <ul class="space-y-2 text-sm flex-grow">
+                                        <li class="flex items-center">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>Fast Problem Resolution</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>Comprehensive Support</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>Remote and On-Site Assistance</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>Preventive Measures</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <svg class="w-5 h-5 text-primary-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span>Cost-Effective Solutions</span>
+                                        </li>
+                                    </ul>
+                                    <a href="contactus.html" class="mt-4 inline-flex items-center text-primary-200 hover:text-white font-medium transition-colors duration-200">
+                                        <span>Learn More</span>
+                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <style>
+                    /* Styles for the 3D flip effect */
+                    .perspective-1000 {
+                        perspective: 1000px;
+                    }
+
+                    .preserve-3d {
+                        transform-style: preserve-3d;
+                    }
+
+                    .backface-hidden {
+                        backface-visibility: hidden;
+                    }
+
+                    .rotate-y-180 {
+                        transform: rotateY(180deg);
+                    }
+
+                    .hover\:rotate-y-180:hover {
+                        transform: rotateY(180deg);
+                    }
+                </style>
+            </section>
+
+            <!-- Why ZNS Section -->
+            <section class="py-16 bg-white" id="why-zns">
+                <div class="container mx-auto px-4">
+                    <div class="max-w-4xl mx-auto">
+                        <div class="text-center mb-10">
+                            <h2 class="text-3xl font-bold text-primary-800 mb-2 font-heading">Why Work With Zambezi IT?</h2>
+                            <p class="text-xl text-primary-600 font-medium">We're Your Kenya-Based IT Partner.</p>
+                        </div>
+
+                        <p class="text-gray-700 text-center mb-8">As an expert IT support company, we will be providing reliable and affordable services to your Kenyan businesses. Our dedicated team is committed to helping you achieve your goals through technology.</p>
+
+                        <div class="bg-white rounded-xl shadow-lg p-8">
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-primary-600 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700"><span class="font-semibold">24/7 Support:</span> We're always available to assist you.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-primary-600 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700"><span class="font-semibold">Expert Technicians:</span> Our team is skilled and passionate about providing excellent service.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-primary-600 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700"><span class="font-semibold">Comprehensive Solutions:</span> We offer support across a wide range of IT environments.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-primary-600 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700"><span class="font-semibold">Affordability:</span> Our services are competitively priced.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Emergency IT Support Section -->
+            <section class="py-16 bg-gray-50" id="emergency-support">
+                <div class="container mx-auto px-4">
+                    <div class="max-w-4xl mx-auto">
+                        <div class="text-center mb-10">
+                            <h2 class="text-3xl font-bold text-primary-800 mb-4 font-heading">Emergency IT Support</h2>
+                        </div>
+
+                        <p class="text-gray-700 text-center mb-8">Don't Let IT Issues Cripple Your Business. When IT emergencies strike, we're here to help. Our rapid response team is equipped to diagnose and resolve issues quickly, minimizing downtime.</p>
+
+                        <div class="bg-white rounded-xl shadow-lg p-8">
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-primary-600 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700"><span class="font-semibold">Fast Problem Resolution:</span> We use the latest tools and techniques.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-primary-600 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700"><span class="font-semibold">Comprehensive Support:</span> We cover all aspects of IT emergencies.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-primary-600 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700"><span class="font-semibold">Remote and On-Site Assistance:</span> We're flexible to meet your needs.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-primary-600 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700"><span class="font-semibold">Preventive Measures:</span> We help you avoid future issues.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-primary-600 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700"><span class="font-semibold">Cost-Effective Solutions:</span> Our services are affordable.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trusted By Section -->
+            <section class="py-16 bg-white" id="trusted-by">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold text-primary-800 mb-2 font-heading">Trusted by</h2>
+                        <h3 class="text-xl text-primary-600 font-medium" id="dynamicSubheader">Industry Leaders</h3>
+                    </div>
+
+                    <div class="relative overflow-hidden">
+                        <div id="trustedCarousel" class="flex items-center justify-center flex-wrap gap-8 py-10">
+                            <!-- Industry icons with labels -->
+                            <div class="flex flex-col items-center p-4 transition-all hover:transform hover:scale-110">
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-3">
+                                    <i class="bx bx-cloud text-3xl text-primary-600"></i>
+                                </div>
+                                <p class="text-gray-700 font-medium">Cloud Services</p>
+                            </div>
+
+                            <div class="flex flex-col items-center p-4 transition-all hover:transform hover:scale-110">
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-3">
+                                    <i class="bx bx-line-chart text-3xl text-primary-600"></i>
+                                </div>
+                                <p class="text-gray-700 font-medium">Analytics</p>
+                            </div>
+
+                            <div class="flex flex-col items-center p-4 transition-all hover:transform hover:scale-110">
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-3">
+                                    <i class="bx bx-lock-alt text-3xl text-primary-600"></i>
+                                </div>
+                                <p class="text-gray-700 font-medium">Cybersecurity</p>
+                            </div>
+
+                            <div class="flex flex-col items-center p-4 transition-all hover:transform hover:scale-110">
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-3">
+                                    <i class="bx bx-laptop text-3xl text-primary-600"></i>
+                                </div>
+                                <p class="text-gray-700 font-medium">Software & Web Development</p>
+                            </div>
+
+                            <div class="flex flex-col items-center p-4 transition-all hover:transform hover:scale-110">
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-3">
+                                    <i class="bx bx-data text-3xl text-primary-600"></i>
+                                </div>
+                                <p class="text-gray-700 font-medium">Data Management</p>
+                            </div>
+
+                            <div class="flex flex-col items-center p-4 transition-all hover:transform hover:scale-110">
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-3">
+                                    <i class="bx bx-network-chart text-3xl text-primary-600"></i>
+                                </div>
+                                <p class="text-gray-700 font-medium">Networking</p>
+                            </div>
+
+                            <div class="flex flex-col items-center p-4 transition-all hover:transform hover:scale-110">
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-3">
+                                    <i class="bx bx-briefcase text-3xl text-primary-600"></i>
+                                </div>
+                                <p class="text-gray-700 font-medium">Business Solutions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ui-ux-section" class="container mx-auto py-12">
+                <div class="flex flex-col md:flex-row items-center">
+                    <!-- Content Section -->
+                    <div class="w-full md:w-1/2 px-4">
+                        <div class="mb-8 md:mb-0">
+                            <h5 class="text-lg font-medium text-primary-600 mb-2">UI-UX Design</h5>
+                            <h2 class="text-3xl font-bold mb-4">UI UX Designs in Kenya</h2>
+                            <p class="text-gray-700 mb-6">We create high-performing websites and mobile applications that are designed to embrace your brand's identity and showcase your products and services.</p>
+                            <a href="contactus.html">
+                                <button class="bg-gray-900 hover:bg-gray-800 text-white font-medium py-2 px-6 rounded transition duration-300">Get Started</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Image Grid Section -->
+                    <div class="w-full md:w-1/2 px-4">
+                        <div class="flex gap-3 overflow-hidden h-96">
+                            <div class="image-column flex-1 relative overflow-hidden">
+                                <img src="assets/images/bs.jpeg" alt="Project 1" class="w-full mb-3 rounded-lg shadow-md" />
+                                <img src="assets/images/it-service.jpeg" alt="Project 2" class="w-full mb-3 rounded-lg shadow-md" />
+                                <img src="assets/images/system-consult.jpeg" alt="Project 3" class="w-full mb-3 rounded-lg shadow-md" />
+                                <img src="assets/images/bs.jpeg" alt="Project 4" class="w-full mb-3 rounded-lg shadow-md" />
+                                <img src="assets/images/risk.jpeg" alt="Project 5" class="w-full mb-3 rounded-lg shadow-md" />
+                                <img src="assets/images/bs.jpeg" alt="Project 6" class="w-full mb-3 rounded-lg shadow-md" />
+                            </div>
+                            <div class="image-column flex-1 relative overflow-hidden">
+                                <img src="assets/images/it-service.jpeg" alt="Project 7" class="w-full mb-3 rounded-lg shadow-md" />
+                                <img src="assets/images/system-consult.jpeg" alt="Project 8" class="w-full mb-3 rounded-lg shadow-md" />
+                                <img src="assets/images/risk.jpeg" alt="Project 9" class="w-full mb-3 rounded-lg shadow-md" />
+                                <img src="assets/images/bs.jpeg" alt="Project 10" class="w-full mb-3 rounded-lg shadow-md" />
+                                <img src="assets/images/it-service.jpeg" alt="Project 11" class="w-full mb-3 rounded-lg shadow-md" />
+                                <img src="assets/images/system-consult.jpeg" alt="Project 12" class="w-full mb-3 rounded-lg shadow-md" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <div class="container mx-auto px-4 py-12">
+                <h1 id="service-head" class="text-3xl font-bold text-center mb-3">Our Professional Services</h1>
+                <p class="text-gray-700 text-center max-w-2xl mx-auto mb-10">We offer a wide range of IT, software, and business consulting services to help your company grow and succeed.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Service 1 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="assets/images/it-service.jpeg" class="w-full h-48 object-cover" alt="IT Services" />
+                        <div class="p-6">
+                            <h5 class="text-xl font-bold mb-2">IT Services</h5>
+                            <p class="text-gray-700 mb-4">We provide comprehensive IT services to ensure your business runs smoothly.</p>
+                            <a href="it-services.html" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded inline-block transition duration-300">Learn More</a>
+                        </div>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="assets/images/bs.jpeg" class="w-full h-48 object-cover" alt="Software Development" />
+                        <div class="p-6">
+                            <h5 class="text-xl font-bold mb-2">Software Development</h5>
+                            <p class="text-gray-700 mb-4">Our team of experts develops custom software solutions tailored to your needs.</p>
+                            <a href="software-services.html" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded inline-block transition duration-300">Learn More</a>
+                        </div>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="assets/images/system-consult.jpeg" class="w-full h-48 object-cover" alt="Business Consulting" />
+                        <div class="p-6">
+                            <h5 class="text-xl font-bold mb-2">Business Consulting</h5>
+                            <p class="text-gray-700 mb-4">We offer strategic business consulting services to help your business thrive.</p>
+                            <a href="business-services.html" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded inline-block transition duration-300">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="bg-gray-100 py-16 my-24 mt-0">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-wrap -mx-4 items-center">
+                        <div class="w-full lg:w-7/12 px-4">
+                            <!-- AOS Animation Attributes -->
+                            <span class="inline-block text-gray-800 bg-gray-100 border border-blue-600 rounded-full px-4 py-1 mb-4 text-sm" data-aos="fade-down" data-aos-delay="200"> Welcome to ZNS Services </span>
+                            <h1 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-down" data-aos-delay="400">Contact Us for <span class="text-blue-600">All Services</span>. <br />A Helper In Your Business</h1>
+                            <div class="flex flex-wrap">
+                                <a href="contactus.html" class="bg-blue-600 hover:bg-blue-700 text-white rounded-full py-3 px-4 md:px-5 mr-4 transition duration-300 mb-2 md:mb-0" data-aos="fade-left" data-aos-delay="600">Contact Now</a>
+                                <a href="contactus.html" class="bg-blue-600 hover:bg-blue-700 text-white rounded-full py-3 px-4 md:px-5 transition duration-300" data-aos="fade-left" data-aos-delay="800">Ask Now</a>
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-5/12 px-4 mt-8 lg:mt-0">
+                            <!-- AOS Animation for Image with Zoom Effect -->
+                            <img src="assets/images/bs.jpeg" class="w-full rounded" data-aos="zoom-in" data-aos-delay="1000" alt="Hero Image" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Carousel Section -->
+            <section id="carousel-section" class="my-16">
+                <div class="relative max-w-6xl mx-auto" id="custom-carousel">
+                    <!-- Main Carousel -->
+                    <div class="overflow-hidden relative rounded-2xl shadow-lg">
+                        <!-- Slide 1 -->
+                        <div class="carousel-item">
+                            <img src="assets/images/bs.jpeg" alt="Slide Image 1" class="w-full h-[500px] object-cover" />
+                            <div class="absolute inset-0 flex flex-col justify-center p-8 lg:p-16 bg-gradient-to-r from-black/70 to-black/40 text-white rounded-2xl">
+                                <div class="text-sm font-medium">Zambezi Network Solutions</div>
+                                <div class="text-2xl md:text-3xl font-bold mt-2">BUSINESS HELPER</div>
+                                <div class="text-lg md:text-xl font-semibold mb-4">TECH SOLUTIONS</div>
+                                <div class="max-w-3xl mb-6">Prepare your business for tomorrow's challenges today! With our innovative IT strategies and business insights, we equip you with the knowledge and technology to adapt and grow in an ever-evolving market. Let us guide you in embracing the future with confidence and agility.</div>
+                                <div class="flex flex-wrap gap-4">
+                                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded transition duration-300">SEE MORE</button>
+                                    <button class="bg-transparent hover:bg-white hover:text-blue-600 text-white border border-white px-6 py-2 rounded transition duration-300">SUBSCRIBE</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="carousel-item hidden">
+                            <img src="assets/images/it-service.jpeg" alt="Slide Image 2" class="w-full h-[500px] object-cover" />
+                            <div class="absolute inset-0 flex flex-col justify-center p-8 lg:p-16 bg-gradient-to-r from-black/70 to-black/40 text-white rounded-2xl">
+                                <div class="text-sm font-medium">Zambezi Network Solutions</div>
+                                <div class="text-2xl md:text-3xl font-bold mt-2">BUSINESS HELPER</div>
+                                <div class="text-lg md:text-xl font-semibold mb-4">TECH SOLUTIONS</div>
+                                <div class="max-w-3xl mb-6">Stay ahead in a fast-paced digital world! Our cutting-edge IT solutions offer everything from custom software development to data analytics, empowering your business with the tools needed to thrive. Discover how our tailored technology can streamline processes and deliver measurable results.</div>
+                                <div class="flex flex-wrap gap-4">
+                                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded transition duration-300">SEE MORE</button>
+                                    <button class="bg-transparent hover:bg-white hover:text-blue-600 text-white border border-white px-6 py-2 rounded transition duration-300">SUBSCRIBE</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="carousel-item hidden">
+                            <img src="assets/images/system-consult.jpeg" alt="Slide Image 3" class="w-full h-[500px] object-cover" />
+                            <div class="absolute inset-0 flex flex-col justify-center p-8 lg:p-16 bg-gradient-to-r from-black/70 to-black/40 text-white rounded-2xl">
+                                <div class="text-sm font-medium">Zambezi Network Solutions</div>
+                                <div class="text-2xl md:text-3xl font-bold mt-2">BUSINESS HELPER</div>
+                                <div class="text-lg md:text-xl font-semibold mb-4">TECH SOLUTIONS</div>
+                                <div class="max-w-3xl mb-6">We believe in building lasting partnerships. Our dedicated team works closely with you to understand your unique challenges and deliver bespoke IT and business solutions. Together, we can navigate the complexities of the digital landscape and achieve your strategic goals.</div>
+                                <div class="flex flex-wrap gap-4">
+                                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded transition duration-300">SEE MORE</button>
+                                    <button class="bg-transparent hover:bg-white hover:text-blue-600 text-white border border-white px-6 py-2 rounded transition duration-300">SUBSCRIBE</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 4 -->
+                        <div class="carousel-item hidden">
+                            <img src="assets/images/risk.jpeg" alt="Slide Image 4" class="w-full h-[500px] object-cover" />
+                            <div class="absolute inset-0 flex flex-col justify-center p-8 lg:p-16 bg-gradient-to-r from-black/70 to-black/40 text-white rounded-2xl">
+                                <div class="text-sm font-medium">Zambezi Network Solutions</div>
+                                <div class="text-2xl md:text-3xl font-bold mt-2">BUSINESS HELPER</div>
+                                <div class="text-lg md:text-xl font-semibold mb-4">TECH SOLUTIONS</div>
+                                <div class="max-w-3xl mb-6">Transforming ideas into innovative solutions, we specialize in IT and business consulting that drives success. Our expert team harnesses the latest technology to optimize your operations, enhance productivity, and unlock new growth opportunities. Partner with us to elevate your business to the next level.</div>
+                                <div class="flex flex-wrap gap-4">
+                                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded transition duration-300">SEE MORE</button>
+                                    <button class="bg-transparent hover:bg-white hover:text-blue-600 text-white border border-white px-6 py-2 rounded transition duration-300">SUBSCRIBE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Thumbnails -->
+                    <div class="flex justify-center gap-2 md:gap-4 -mt-12 relative z-10">
+                        <div class="carousel-thumb w-1/4 max-w-[150px] cursor-pointer overflow-hidden rounded-xl shadow-md transition-all duration-300 hover:-translate-y-1 bg-white">
+                            <img src="assets/images/bs.jpeg" alt="Thumbnail 1" class="w-full h-20 object-cover" />
+                            <div class="p-2">
+                                <div class="text-sm font-semibold text-gray-800">ZNS Services</div>
+                                <div class="text-xs text-gray-600">Business Strategy</div>
+                            </div>
+                        </div>
+                        <div class="carousel-thumb w-1/4 max-w-[150px] cursor-pointer overflow-hidden rounded-xl shadow-md transition-all duration-300 hover:-translate-y-1 bg-white">
+                            <img src="assets/images/it-service.jpeg" alt="Thumbnail 2" class="w-full h-20 object-cover" />
+                            <div class="p-2">
+                                <div class="text-sm font-semibold text-gray-800">ZNS Services</div>
+                                <div class="text-xs text-gray-600">IT Solutions</div>
+                            </div>
+                        </div>
+                        <div class="carousel-thumb w-1/4 max-w-[150px] cursor-pointer overflow-hidden rounded-xl shadow-md transition-all duration-300 hover:-translate-y-1 bg-white">
+                            <img src="assets/images/system-consult.jpeg" alt="Thumbnail 3" class="w-full h-20 object-cover" />
+                            <div class="p-2">
+                                <div class="text-sm font-semibold text-gray-800">ZNS Services</div>
+                                <div class="text-xs text-gray-600">Partnerships</div>
+                            </div>
+                        </div>
+                        <div class="carousel-thumb w-1/4 max-w-[150px] cursor-pointer overflow-hidden rounded-xl shadow-md transition-all duration-300 hover:-translate-y-1 bg-white">
+                            <img src="assets/images/risk.jpeg" alt="Thumbnail 4" class="w-full h-20 object-cover" />
+                            <div class="p-2">
+                                <div class="text-sm font-semibold text-gray-800">ZNS Services</div>
+                                <div class="text-xs text-gray-600">Consultation</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Arrows -->
+                    <div class="absolute top-1/2 left-0 right-0 transform -translate-y-1/2 flex justify-between px-4">
+                        <button id="carousel-prev" class="bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300 opacity-0 group-hover:opacity-100">&#9664;</button>
+                        <button id="carousel-next" class="bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300 opacity-0 group-hover:opacity-100">&#9654;</button>
+                    </div>
+
+                    <!-- Progress Time Bar -->
+                    <div class="h-1 bg-gray-200 w-full mt-6 rounded-full overflow-hidden hidden">
+                        <div id="carousel-progress" class="h-full bg-blue-600 w-0 transition-all duration-[5000ms] ease-linear"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Choose Us Section -->
+            <section class="py-16 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Choose Us</h2>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Here are the reasons why you should choose our services.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Feature Card 1 -->
+                        <div class="bg-white rounded-lg shadow-lg p-6 transform transition-all duration-300 hover:scale-105">
+                            <div class="flex justify-center mb-4">
+                                <div class="bg-blue-100 p-3 rounded-full">
+                                    <svg class="w-8 h-8 text-blue-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-3">Experienced Professionals</h3>
+                            <p class="text-gray-600">Our team consists of highly skilled and experienced professionals dedicated to providing the best solutions.</p>
+                        </div>
+
+                        <!-- Feature Card 2 -->
+                        <div class="bg-white rounded-lg shadow-lg p-6 transform transition-all duration-300 hover:scale-105">
+                            <div class="flex justify-center mb-4">
+                                <div class="bg-green-100 p-3 rounded-full">
+                                    <svg class="w-8 h-8 text-green-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-3">Innovative Solutions</h3>
+                            <p class="text-gray-600">We offer innovative solutions tailored to meet the specific needs of our clients, ensuring success and growth.</p>
+                        </div>
+
+                        <!-- Feature Card 3 -->
+                        <div class="bg-white rounded-lg shadow-lg p-6 transform transition-all duration-300 hover:scale-105">
+                            <div class="flex justify-center mb-4">
+                                <div class="bg-purple-100 p-3 rounded-full">
+                                    <svg class="w-8 h-8 text-purple-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path
+                                            d="M11 17.5V16h2v1.5c0 .83-.67 1.5-1.5 1.5S10 18.33 10 17.5v-3.28c.43.23.92.38 1.5.38h1c1.93 0 3.5-1.57 3.5-3.5S14.43 7.6 12.5 7.6h-1c-.58 0-1.07.15-1.5.38V4.5C10 3.67 10.67 3 11.5 3s1.5.67 1.5 1.5V6h2V4.5C15 2.57 13.43 1 11.5 1S8 2.57 8 4.5v3.28C7.07 6.85 6 5.32 6 3.5 6 1.57 7.57 0 9.5 0S13 1.57 13 3.5m-1.5 9.5h-1c-.83 0-1.5-.67-1.5-1.5S9.67 10 10.5 10h1c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-3">Customer Satisfaction</h3>
+                            <p class="text-gray-600">Customer satisfaction is our top priority. We are committed to exceeding your expectations in every project.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="py-16 bg-white" id="contact-section">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Section Header -->
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4" id="contid">Contact Us</h2>
+                    </div>
+
+                    <!-- Contact Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                        <!-- Phone Card -->
+                        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                            <div class="flex justify-center mb-4">
+                                <div class="bg-blue-100 p-3 rounded-full">
+                                    <svg class="w-8 h-8 text-blue-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.3-.5-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1zM19 12h2c0-4.97-4.03-9-9-9v2c3.87 0 7 3.13 7 7zm-4 0h2c0-2.76-2.24-5-5-5v2c1.66 0 3 1.34 3 3z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Phone</h3>
+                            <ul class="space-y-2 text-center">
+                                <li>
+                                    <a href="tel:+254 11 2948792" class="text-blue-600 hover:text-blue-800 transition-colors duration-300">+254 11 2948792</a>
+                                </li>
+                                <li>
+                                    <a href="tel:+254 11 2948792" class="text-blue-600 hover:text-blue-800 transition-colors duration-300">+254 11 2948792</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Email Card -->
+                        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                            <div class="flex justify-center mb-4">
+                                <div class="bg-green-100 p-3 rounded-full">
+                                    <svg class="w-8 h-8 text-green-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Email</h3>
+                            <ul class="space-y-2 text-center">
+                                <li>
+                                    <a href="mailto:admin@zambezitechnologies.com" class="text-green-600 hover:text-green-800 transition-colors duration-300">admin@zambezitechnologies.com</a>
+                                </li>
+                                <li>
+                                    <a href="mailto:sales@zambezitechnologies.com" class="text-green-600 hover:text-green-800 transition-colors duration-300">sales@zambezitechnologies.com</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Location Card -->
+                        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                            <div class="flex justify-center mb-4">
+                                <div class="bg-purple-100 p-3 rounded-full">
+                                    <svg class="w-8 h-8 text-purple-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Location</h3>
+                            <ul class="space-y-2 text-center">
+                                <li class="text-gray-600">Blue Violets Plaza, Kamburu Road, Nairobi</li>
+                                <li class="text-gray-600">P.O BOX, 3288 NYAYO STADIUM</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="bg-gray-50 rounded-lg shadow-lg p-8 max-w-3xl mx-auto">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Talk With Us</h3>
+                        <form id="contactForm" onsubmit="sendEmail(event)">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <!-- Name Input -->
+                                <div>
+                                    <input type="text" name="name" id="name" placeholder="Your Name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+                                </div>
+
+                                <!-- Email Input -->
+                                <div>
+                                    <input type="email" name="email" id="email" placeholder="Your Email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+                                </div>
+
+                                <!-- Phone Input -->
+                                <div>
+                                    <input type="tel" name="number" id="number" placeholder="Phone Number" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+                                </div>
+
+                                <!-- Subject Input -->
+                                <div>
+                                    <input type="text" name="subject" id="subject" placeholder="Your Subject" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+                                </div>
+                            </div>
+
+                            <!-- Message Input -->
+                            <div class="mb-6">
+                                <textarea name="message" id="message" placeholder="Write Message" rows="5" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent resize-none"></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="text-center">
+                                <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">Send Message</button>
+                                <div id="msgSubmit" class="h3 text-center mt-4 hidden"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Marquee Text Section -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-12">
+                <div class="relative overflow-hidden bg-blue-50 rounded-lg shadow-md">
+                    <!-- Marquee Container -->
+                    <div class="relative py-4 overflow-hidden whitespace-nowrap">
+                        <!-- Marquee Wrapper - This ensures continuity -->
+                        <div class="inline-flex marquee-wrapper">
+                            <!-- First copy of text -->
+                            <div class="marquee-content">
+                                <span class="text-lg text-gray-800 font-medium">
+                                    Zambezi Network Solutions: Your Partner in IT and Business Innovation. We specialize in providing top-notch IT solutions that drive success. Our team of experts is dedicated to helping businesses thrive in a digital world. We offer a range of services including software development, network management, and IT consultancy. Together, we can build a brighter future
+                                    for your business!
+                                </span>
+                            </div>
+                            <!-- Duplicate text to create seamless loop -->
+                            <div class="marquee-content">
+                                <span class="text-lg text-gray-800 font-medium">
+                                    Zambezi Network Solutions: Your Partner in IT and Business Innovation. We specialize in providing top-notch IT solutions that drive success. Our team of experts is dedicated to helping businesses thrive in a digital world. We offer a range of services including software development, network management, and IT consultancy. Together, we can build a brighter future
+                                    for your business!
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                .marquee-wrapper {
+                    display: flex;
+                    animation: marquee 30s linear infinite;
+                    /* Start with the text at the right edge */
+                    transform: translateX(100%);
+                }
+
+                @keyframes marquee {
+                    0% {
+                        transform: translateX(100%);
+                    }
+                    100% {
+                        transform: translateX(-50%);
+                    }
+                }
+            </style>
+
+            <!-- WhatsApp Floating Action Button (FAB) -->
+            <a href="https://wa.me/254112948792" target="_blank" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg z-50 group transition-all duration-300 hover:scale-110">
+                <!-- WhatsApp Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 group-hover:animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                    <path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm0 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z" />
+                </svg>
+                <!-- Ripple Effect -->
+                <span class="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping"></span>
+            </a>
+
+            <!-- Footer Section -->
+            <footer class="bg-gray-900 text-white pt-16 pb-4">
+                <!-- Footer Top -->
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Company Information -->
+                        <div class="mb-10 md:mb-0">
+                            <a href="#" class="inline-block mb-6 rounded-full overflow-hidden">
+                                <img src="./assets/images/logo.jpeg" alt="Zambezi logo" class="h-16 w-auto rounded-md" />
+                            </a>
+                            <p class="text-gray-300 mb-6">Empowering your business with cutting-edge IT solutions.</p>
+                            <p class="text-gray-400 mb-6">Designed and Developed by <a href="https://www.zambezitechnologies.com" class="text-blue-400 hover:text-blue-300 transition-colors duration-300">Zambezi Network Solutions</a></p>
+
+                            <ul class="space-y-4">
+                                <li>
+                                    <a href="#" class="flex items-center text-gray-300 hover:text-white transition-colors duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                        <address class="not-italic">Kamburu Road, Nairobi, Kenya</address>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="tel:+254 11 2948792" class="flex items-center text-gray-300 hover:text-white transition-colors duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                        </svg>
+                                        <span>+254 11 2948792</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:info@zambezitechnologies.com" class="flex items-center text-gray-300 hover:text-white transition-colors duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                        </svg>
+                                        <span>info@zambezitechnologies.com</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div class="mb-10 md:mb-0">
+                            <h3 class="text-xl font-bold mb-6 relative pl-3 border-l-4 border-blue-500">Company</h3>
+                            <ul class="space-y-3">
+                                <li>
+                                    <a href="#service-head" class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                        Services
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#solutions" class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                        Solutions
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#contact-section" class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                        Contact us
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mb-10 md:mb-0">
+                            <h3 class="text-xl font-bold mb-6 mt-0 relative pl-3 border-l-4 border-blue-500">Services</h3>
+                            <ul class="space-y-3">
+                                <li>
+                                    <a href="it-#service-head" class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                        IT Services
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="software-#service-head" class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                        Software Services
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="business-#service-head" class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                        Business Services
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom -->
+                <div class="border-t border-gray-800 mt-12 pt-6">
+                    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                        <p class="text-gray-400">&copy; <span id="current-year"></span> <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors duration-300">Zambezi Network Solutions Developers</a>. All Rights Reserved</p>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Scroll to Top Button -->
+            <a href="#" id="scrollToTopBtn" class="fixed bottom-6 left-6 bg-blue-600 hover:bg-blue-700 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-50 group transition-all duration-300 hover:scale-110 focus:outline-none opacity-0 invisible transform translate-y-4">
+                <div class="flex flex-col items-center justify-center -mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                    </svg>
+                </div>
+            </a>
+        </main>
+
+        <!-- footer -->
+        <script>
+            const currentYear = new Date().getFullYear();
+            document.getElementById("current-year").innerHTML = currentYear;
+        </script>
+
+        <script>
+            // Preloader
+            window.addEventListener("load", function () {
+                setTimeout(function () {
+                    document.getElementById("preloader").classList.add("fade-out");
+                }, 1500);
+            });
+        </script>
+
+        <script>
+            // Wait for the DOM to be fully loaded
+            document.addEventListener("DOMContentLoaded", function () {
+                // Get references to key elements
+                const navbar = document.getElementById("navbar");
+                const mobileMenuButton = document.getElementById("mobile-menu-button");
+                const mobileMenu = document.getElementById("mobile-menu");
+
+                // Initial scroll position
+                let lastScrollTop = 0;
+
+                // Navigation links
+                const navLinks = {
+                    desktop: document.querySelectorAll('.hidden.md\\:block a[href^="#"]'),
+                    mobile: document.querySelectorAll('#mobile-menu a[href^="#"]'),
+                };
+
+                // Sections for tracking
+                const sections = {};
+                [...navLinks.desktop].forEach((link) => {
+                    const sectionId = link.getAttribute("href").substring(1);
+                    const section = document.getElementById(sectionId);
+                    if (section) sections[sectionId] = section;
+                });
+
+                // Toggle mobile menu
+                mobileMenuButton.addEventListener("click", function () {
+                    mobileMenu.classList.toggle("hidden");
+                });
+
+                // Handle scroll events
+                window.addEventListener("scroll", function () {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                    // Navbar animation based on scroll direction
+                    if (scrollTop > lastScrollTop && scrollTop > 100) {
+                        // Scrolling down after 100px - make navbar compact
+                        navbar.classList.add("navbar-compact");
+                        navbar.classList.remove("navbar-expanded");
+                    } else {
+                        // Scrolling up - expand navbar
+                        navbar.classList.remove("navbar-compact");
+                        navbar.classList.add("navbar-expanded");
+                    }
+
+                    lastScrollTop = scrollTop;
+
+                    // Highlight active section
+                    highlightActiveSection(scrollTop);
+                });
+
+                // Handle click on navigation links
+                [...navLinks.desktop, ...navLinks.mobile].forEach((link) => {
+                    link.addEventListener("click", function (e) {
+                        const href = this.getAttribute("href");
+
+                        // Only handle internal links
+                        if (href.startsWith("#")) {
+                            e.preventDefault();
+                            const targetId = href.substring(1);
+                            const targetSection = document.getElementById(targetId);
+
+                            if (targetSection) {
+                                // Hide mobile menu if open
+                                mobileMenu.classList.add("hidden");
+
+                                // Scroll to section
+                                window.scrollTo({
+                                    top: targetSection.offsetTop - 80, // Adjust for navbar height
+                                    behavior: "smooth",
+                                });
+
+                                // Update URL hash
+                                history.pushState(null, null, href);
+
+                                // Update active link
+                                updateActiveLink(targetId);
+                            }
+                        }
+                    });
+                });
+
+                // Set active link based on current section
+                function updateActiveLink(sectionId) {
+                    // Remove active class from all links
+                    [...navLinks.desktop, ...navLinks.mobile].forEach((link) => {
+                        link.classList.remove("text-primary-700", "border-primary-500");
+                        link.classList.add("text-gray-600", "border-transparent");
+                    });
+
+                    // Add active class to matching links
+                    [...navLinks.desktop, ...navLinks.mobile].forEach((link) => {
+                        if (link.getAttribute("href") === `#${sectionId}`) {
+                            link.classList.remove("text-gray-600", "border-transparent");
+                            link.classList.add("text-primary-700", "border-primary-500");
+                        }
+                    });
+                }
+
+                // Determine active section based on scroll position
+                function highlightActiveSection(scrollTop) {
+                    let currentSection = "";
+
+                    // Find the section currently in view
+                    Object.keys(sections).forEach((sectionId) => {
+                        const section = sections[sectionId];
+                        const sectionTop = section.offsetTop - 100; // Adjust for navbar
+                        const sectionBottom = sectionTop + section.offsetHeight;
+
+                        if (scrollTop >= sectionTop && scrollTop < sectionBottom) {
+                            currentSection = sectionId;
+                        }
+                    });
+
+                    // Update active link if we're in a section
+                    if (currentSection) {
+                        updateActiveLink(currentSection);
+                    }
+                }
+
+                // Initialize the navbar state
+                function initNavbar() {
+                    // Add CSS for navbar animations
+                    const style = document.createElement("style");
+                    style.textContent = `
+                        .navbar-expanded {
+                            width: 100%;
+                            border-radius: 0;
+                        }
+                        
+                        .navbar-compact {
+                            width: 80%;
+                            max-width: 1200px;
+                            border-radius: 0.75rem;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            margin-top: 12px;
+                            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+                        }
+                        
+                        @media (max-width: 768px) {
+                            .navbar-compact {
+                            width: 90%;
+                            }
+                        }
+                        `;
+                    document.head.appendChild(style);
+
+                    // Set initial state
+                    navbar.classList.add("navbar-expanded");
+
+                    // Set initial active section
+                    highlightActiveSection(window.pageYOffset);
+                }
+
+                // Initialize
+                initNavbar();
+            });
+        </script>
+
+        <!-- courasel -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                initCarousel("aboutCarousel");
+            });
+
+            function initCarousel(carouselId) {
+                const carousel = document.getElementById(carouselId);
+
+                if (!carousel) {
+                    console.error(`Carousel with ID "${carouselId}" not found`);
+                    return;
+                }
+
+                const slides = carousel.querySelectorAll(".carousel-slide");
+                const indicators = carousel.querySelectorAll(".carousel-indicator");
+                const prevBtn = carousel.querySelector(".carousel-prev");
+                const nextBtn = carousel.querySelector(".carousel-next");
+
+                if (!slides.length || !indicators.length || !prevBtn || !nextBtn) {
+                    console.error("Required carousel elements not found");
+                    return;
+                }
+
+                let currentIndex = 0;
+                let autoplayInterval;
+
+                // Show initial slide
+                updateCarousel();
+
+                // Start autoplay
+                startAutoplay();
+
+                // Event listeners
+                prevBtn.addEventListener("click", () => {
+                    goToSlide(currentIndex - 1);
+                    resetAutoplay();
+                });
+
+                nextBtn.addEventListener("click", () => {
+                    goToSlide(currentIndex + 1);
+                    resetAutoplay();
+                });
+
+                // Add click event to each indicator
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener("click", () => {
+                        goToSlide(index);
+                        resetAutoplay();
+                    });
+                });
+
+                // Pause autoplay on hover
+                carousel.addEventListener("mouseenter", () => {
+                    clearInterval(autoplayInterval);
+                });
+
+                carousel.addEventListener("mouseleave", () => {
+                    startAutoplay();
+                });
+
+                function goToSlide(index) {
+                    // Handle wrapping around
+                    if (index < 0) {
+                        currentIndex = slides.length - 1;
+                    } else if (index >= slides.length) {
+                        currentIndex = 0;
+                    } else {
+                        currentIndex = index;
+                    }
+
+                    updateCarousel();
+                }
+
+                function updateCarousel() {
+                    // Update slides
+                    slides.forEach((slide, index) => {
+                        if (index === currentIndex) {
+                            slide.classList.remove("hidden");
+                            slide.classList.add("active");
+                        } else {
+                            slide.classList.add("hidden");
+                            slide.classList.remove("active");
+                        }
+                    });
+
+                    // Update indicators
+                    indicators.forEach((indicator, index) => {
+                        if (index === currentIndex) {
+                            indicator.classList.add("bg-primary-600");
+                            indicator.classList.remove("bg-gray-300");
+                        } else {
+                            indicator.classList.remove("bg-primary-600");
+                            indicator.classList.add("bg-gray-300");
+                        }
+                    });
+                }
+
+                function startAutoplay() {
+                    autoplayInterval = setInterval(() => {
+                        goToSlide(currentIndex + 1);
+                    }, 5000);
+                }
+
+                function resetAutoplay() {
+                    clearInterval(autoplayInterval);
+                    startAutoplay();
+                }
+            }
+        </script>
+
+        <script>
+            // Array of subheader text options
+            const subheaderTexts = ["Industry Leaders", "NGOs", "Corporations", "Education Institutes"];
+
+            // Get the subheader element
+            const subheader = document.getElementById("dynamicSubheader");
+
+            // Keep track of current text index
+            let currentIndex = 0;
+
+            // Function to fade out current text and fade in new text
+            function changeSubheaderText() {
+                // Fade out
+                subheader.classList.add("opacity-0");
+                subheader.style.transition = "opacity 0.8s ease-out";
+
+                // Wait for fade out to complete, then change text and fade in
+                setTimeout(() => {
+                    // Move to next text option
+                    currentIndex = (currentIndex + 1) % subheaderTexts.length;
+
+                    // Update text content
+                    subheader.textContent = subheaderTexts[currentIndex];
+
+                    // Fade in
+                    subheader.classList.remove("opacity-0");
+
+                    // Schedule next transition
+                    setTimeout(changeSubheaderText, 3000); // Change text every 3 seconds
+                }, 800); // Wait for fade out animation to complete
+            }
+
+            // Initialize the animation loop (with a short delay to ensure page is loaded)
+            setTimeout(() => {
+                // Add initial opacity class for proper transitions
+                subheader.style.transition = "opacity 0.8s ease-in-out";
+
+                // Start the animation cycle
+                changeSubheaderText();
+            }, 500);
+        </script>
+
+        <script>
+            // Carousel functionality - Tailwind version
+            document.addEventListener("DOMContentLoaded", function () {
+                const carouselItems = document.querySelectorAll(".carousel-item");
+                const thumbnails = document.querySelectorAll(".carousel-thumb");
+                const prevButton = document.getElementById("carousel-prev");
+                const nextButton = document.getElementById("carousel-next");
+                const progressBar = document.getElementById("carousel-progress");
+
+                let currentIndex = 0;
+                let interval;
+                const intervalTime = 5000; // 5 seconds per slide
+
+                // Initialize carousel
+                function initCarousel() {
+                    // Set the first slide and thumbnail as active
+                    showSlide(0);
+
+                    // Set up thumbnail click events
+                    thumbnails.forEach((thumb, index) => {
+                        thumb.addEventListener("click", () => {
+                            currentIndex = index;
+                            showSlide(index);
+                            resetAutoRotation();
+                        });
+                    });
+
+                    // Set up navigation buttons
+                    prevButton.addEventListener("click", () => {
+                        currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+                        showSlide(currentIndex);
+                        resetAutoRotation();
+                    });
+
+                    nextButton.addEventListener("click", () => {
+                        currentIndex = (currentIndex + 1) % carouselItems.length;
+                        showSlide(currentIndex);
+                        resetAutoRotation();
+                    });
+
+                    // Start auto rotation
+                    startAutoRotation();
+                }
+
+                // Show a specific slide
+                function showSlide(index) {
+                    // Hide all slides
+                    carouselItems.forEach((item) => {
+                        item.classList.add("hidden");
+                    });
+
+                    // Show the current slide
+                    carouselItems[index].classList.remove("hidden");
+
+                    // Update thumbnails
+                    thumbnails.forEach((thumb, i) => {
+                        // Remove active state from all thumbnails
+                        thumb.classList.remove("border-2", "border-blue-600", "-translate-y-2", "shadow-lg");
+
+                        // Add active state to current thumbnail
+                        if (i === index) {
+                            thumb.classList.add("border-2", "border-blue-600", "-translate-y-2", "shadow-lg");
+                        }
+                    });
+
+                    // Reset and animate progress bar
+                    animateProgressBar();
+                }
+
+                // Start auto rotation
+                function startAutoRotation() {
+                    interval = setInterval(() => {
+                        currentIndex = (currentIndex + 1) % carouselItems.length;
+                        showSlide(currentIndex);
+                    }, intervalTime);
+                }
+
+                // Reset auto rotation
+                function resetAutoRotation() {
+                    clearInterval(interval);
+                    startAutoRotation();
+                }
+
+                // Animate progress bar
+                function animateProgressBar() {
+                    // Reset progress bar
+                    progressBar.style.width = "0";
+                    progressBar.style.transitionDuration = "0ms";
+
+                    // Force reflow
+                    void progressBar.offsetWidth;
+
+                    // Start animation
+                    progressBar.style.width = "100%";
+                    progressBar.style.transitionDuration = intervalTime + "ms";
+                }
+
+                // Add hover effect to entire carousel
+                const carousel = document.getElementById("custom-carousel");
+                carousel.classList.add("group");
+
+                // Initialize carousel
+                initCarousel();
+            });
+        </script>
+
+        <script>
+            // Get the button element
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+            // Set the scroll depth at which the button should appear (in pixels)
+            const scrollDepthToShow = 700;
+
+            // Function to handle scroll events
+            function handleScroll() {
+                if (window.scrollY > scrollDepthToShow) {
+                    // Show the button with smooth transition
+                    scrollToTopBtn.classList.remove("opacity-0", "invisible", "translate-y-4");
+                    scrollToTopBtn.classList.add("opacity-100", "visible", "translate-y-0");
+                } else {
+                    // Hide the button with smooth transition
+                    scrollToTopBtn.classList.remove("opacity-100", "visible", "translate-y-0");
+                    scrollToTopBtn.classList.add("opacity-0", "invisible", "translate-y-4");
+                }
+            }
+
+            // Add scroll event listener
+            window.addEventListener("scroll", handleScroll);
+
+            // Handle click event on the button
+            scrollToTopBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });
+            });
+        </script>
+    </body>
+</html>
