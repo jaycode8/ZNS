@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./assets/images/logo.jpeg" type="image/x-icon">
+    <title>Contact Us - Zambezi Network Solutions</title>
+
+    <!-- Tailwind CSS -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="./3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: "#ebf5ff",
+                            100: "#e1effe",
+                            200: "#c3ddfd",
+                            300: "#a4cafe",
+                            400: "#76a9fa",
+                            500: "#3f83f8",
+                            600: "#1c64f2",
+                            700: "#1a56db",
+                            800: "#1e429f",
+                            900: "#233876",
+                        },
+                    },
+                    fontFamily: {
+                        sans: ["Poppins", "sans-serif"],
+                        heading: ["Nunito Sans", "sans-serif"],
+                    }
+                },
+            },
+        };
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Boxicons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+    <style>
+        /* Custom animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animate-spin-slow {
+            animation: spin 3s linear infinite;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        /* Preloader fade out */
+        .fade-out {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-gray-800 bg-gray-50">
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 bg-white shadow-md transition-all duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="flex items-center rounded-full overflow-hidden">
+                        <img src="./assets/images/logo.jpeg" alt="Logo" class="h-12 w-auto" />
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="index.html"
+                            class="text-primary-700 font-medium hover:text-primary-500 transition-colors duration-200 px-3 py-2 border-b-2 border-primary-500">Home</a>
+                        <a href="#solutions"
+                            class="text-primary-700 font-medium hover:text-primary-500 transition-colors duration-200 px-3 py-2 border-b-2 border-primary-500">Solutions</a>
+                        <a href="#services-section"
+                            class="text-gray-600 font-medium hover:text-primary-500 transition-colors duration-200 px-3 py-2 border-b-2 border-transparent hover:border-primary-300">Services</a>
+                        <a href="about.html"
+                            class="text-gray-600 font-medium hover:text-primary-500 transition-colors duration-200 px-3 py-2 border-b-2 border-transparent hover:border-primary-300">About
+                            Us</a>
+                        <a href="contact.html"
+                            class="text-gray-600 font-medium hover:text-primary-500 transition-colors duration-200 px-3 py-2 border-b-2 border-transparent hover:border-primary-300">Contact
+                            Us</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-primary-500 focus:outline-none"
+                        onclick="handleMenuToggle">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden pb-4">
+                <div class="flex flex-col space-y-2 px-2 pt-2">
+                    <a href="index.html"
+                        class="text-primary-700 font-medium block px-3 py-2 rounded-md hover:bg-primary-50 transition-colors duration-200">Home</a>
+                    <a href="#solutions"
+                        class="text-gray-600 font-medium block px-3 py-2 rounded-md hover:bg-primary-50 transition-colors duration-200">Solutions</a>
+                    <a href="#services-section"
+                        class="text-gray-600 font-medium block px-3 py-2 rounded-md hover:bg-primary-50 transition-colors duration-200">Services</a>
+                    <a href="about.html"
+                        class="text-gray-600 font-medium block px-3 py-2 rounded-md hover:bg-primary-50 transition-colors duration-200">About
+                        Us</a>
+                    <a href="contact.html"
+                        class="text-gray-600 font-medium block px-3 py-2 rounded-md hover:bg-primary-50 transition-colors duration-200">Contact
+                        Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-20 sm:pt-0">
+
+        <!-- Contact Section -->
+        <section class="py-16 pt-24 bg-white" id="contact-section">
+            <div class="sm:w-3/4 mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2" id="contid">Contact Us</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Reach out to our team for any inquiries or assistance.
+                        We're here to help you with all your technology needs.</p>
+                </div>
+
+                <div class="grid gap-8 mb-12" style="grid-template-columns: 70% 30%;">
+                    <div class="bg-gray-50 rounded-lg shadow-lg p-8 w-full mx-auto border-t-4 border-blue-600">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Get In Touch</h3>
+                        <form id="contactForm" onsubmit="sendEmail(event)">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div class="relative">
+                                    <input type="text" name="name" id="name" placeholder=" " required
+                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 outline-0 focus:border-blue-600 peer" />
+                                    <label for="name"
+                                        class="absolute left-4 -top-2.5 bg-gray-50 text-sm text-gray-600 px-1 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:text-sm">Your
+                                        Name</label>
+                                </div>
+
+                                <div class="relative">
+                                    <input type="email" name="email" id="email" placeholder=" " required
+                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 outline-0 focus:border-blue-600 peer" />
+                                    <label for="email"
+                                        class="absolute left-4 -top-2.5 bg-gray-50 text-sm text-gray-600 px-1 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:text-sm">Your
+                                        Email</label>
+                                </div>
+
+                                <div class="relative">
+                                    <input type="tel" name="number" id="number" placeholder=" " required
+                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 outline-0 focus:border-blue-600 peer" />
+                                    <label for="number"
+                                        class="absolute left-4 -top-2.5 bg-gray-50 text-sm text-gray-600 px-1 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:text-sm">Phone
+                                        Number</label>
+                                </div>
+
+                                <div class="relative">
+                                    <input type="text" name="subject" id="subject" placeholder=" " required
+                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 outline-0 focus:border-blue-600 peer" />
+                                    <label for="subject"
+                                        class="absolute left-4 -top-2.5 bg-gray-50 text-sm text-gray-600 px-1 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:text-sm">Your
+                                        Subject</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-6 relative">
+                                <textarea name="message" id="message" placeholder=" " rows="5" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 outline-0 focus:border-blue-600 resize-none peer"></textarea>
+                                <label for="message"
+                                    class="absolute left-4 -top-2.5 bg-gray-50 text-sm text-gray-600 px-1 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:text-sm">Write
+                                    Message</label>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit"
+                                    class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 group relative overflow-hidden">
+                                    <span class="relative z-10">Send Message</span>
+                                    <span
+                                        class="absolute inset-0 bg-blue-800 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></span>
+                                </button>
+                                <div id="msgSubmit" class="h3 text-center mt-4 hidden"></div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="flex flex-col space-y-6">
+                        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <svg class="w-6 h-6 text-blue-600" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path
+                                            d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.3-.5-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1zM19 12h2c0-4.97-4.03-9-9-9v2c3.87 0 7 3.13 7 7zm-4 0h2c0-2.76-2.24-5-5-5v2c1.66 0 3 1.34 3 3z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Phone</h3>
+                                    <ul class="space-y-2">
+                                        <li>
+                                            <a href="tel:+254 11 2948792"
+                                                class="text-blue-600 hover:text-blue-800 transition-colors duration-300 flex items-center">
+                                                <span class="mr-2">+254 11 2948792</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="tel:+254 11 2948792"
+                                                class="text-blue-600 hover:text-blue-800 transition-colors duration-300 flex items-center">
+                                                <span class="mr-2">+254 11 2948792</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-full mr-4">
+                                    <svg class="w-6 h-6 text-green-600" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path
+                                            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Email</h3>
+                                    <ul class="space-y-2">
+                                        <li>
+                                            <a href="mailto:admin@zambezitechnologies.com"
+                                                class="text-green-600 hover:text-green-800 transition-colors duration-300 group">
+                                                admin@zambezitechnologies.com
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="mailto:sales@zambezitechnologies.com"
+                                                class="text-green-600 hover:text-green-800 transition-colors duration-300 group">
+                                                sales@zambezitechnologies.com
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                    <svg class="w-6 h-6 text-purple-600" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Location</h3>
+                                    <address class="not-italic text-gray-600">
+                                        <p class="mb-1">Blue Violets Plaza, Kamburu Road</p>
+                                        <p class="mb-1">Nairobi, Kenya</p>
+                                        <p>P.O BOX, 3288 NYAYO STADIUM</p>
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden h-full min-h-96">
+                    <div class="relative w-full h-full min-h-96">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.817246005981!2d36.81211687426861!3d-1.2913057356213095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10dac5980d59%3A0xe4c59b2d352d8a97!2sNyayo%20Stadium!5e0!3m2!1sen!2ske!4v1683544245266!5m2!1sen!2ske"
+                            class="absolute inset-0 w-full h-full border-0" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="bg-gray-900 text-white pt-16 pb-4">
+            <!-- Footer Top -->
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Company Information -->
+                    <div class="mb-10 md:mb-0">
+                        <a href="#" class="inline-block mb-6 rounded-full overflow-hidden">
+                            <img src="./assets/images/logo.jpeg" alt="Zambezi logo" class="h-16 w-auto rounded-md" />
+                        </a>
+                        <p class="text-gray-300 mb-6">Empowering your business with cutting-edge IT solutions.</p>
+                        <p class="text-gray-400 mb-6">Designed and Developed by <a
+                                href="https://www.zambezitechnologies.com"
+                                class="text-blue-400 hover:text-blue-300 transition-colors duration-300">Zambezi Network
+                                Solutions</a></p>
+
+                        <ul class="space-y-4">
+                            <li>
+                                <a href="#"
+                                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-400"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    <address class="not-italic">Kamburu Road, Nairobi, Kenya</address>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tel:+254 11 2948792"
+                                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-400"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
+                                    <span>+254 11 2948792</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mailto:info@zambezitechnologies.com"
+                                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-400"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                    <span>info@zambezitechnologies.com</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="mb-10 md:mb-0">
+                        <h3 class="text-xl font-bold mb-6 relative pl-3 border-l-4 border-blue-500">Company</h3>
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="index.html#service-head"
+                                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    Services
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#solutions"
+                                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    Solutions
+                                </a>
+                            </li>
+                            <li>
+                                <a href="about.html"
+                                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    About us
+                                </a>
+                            </li>
+                            <li>
+                                <a href="contact.html"
+                                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    Contact us
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mb-10 md:mb-0">
+                        <h3 class="text-xl font-bold mb-6 mt-0 relative pl-3 border-l-4 border-blue-500">Services</h3>
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="it-#service-head"
+                                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    IT Services
+                                </a>
+                            </li>
+                            <li>
+                                <a href="software-#service-head"
+                                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    Software Services
+                                </a>
+                            </li>
+                            <li>
+                                <a href="business-#service-head"
+                                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    Business Services
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-gray-800 mt-12 pt-6">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <p class="text-gray-400">&copy; <span id="current-year"></span> <a href="#"
+                            class="text-blue-400 hover:text-blue-300 transition-colors duration-300">Zambezi Network
+                            Solutions Developers</a>. All Rights Reserved</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- email js -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function () {
+            emailjs.init("KfPbx6mKING-tD27B");
+        })();
+    </script>
+
+    <script>
+        function sendEmail(event) {
+            event.preventDefault();
+
+            emailjs.send("service_u66w9dl", "template_m9qzvck", {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                number: document.getElementById("number").value,
+                subject: document.getElementById("subject").value,
+                message: document.getElementById("message").value
+            })
+                .then(function (response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    document.getElementById("msgSubmit").innerHTML = "Message Sent Successfully!";
+                    document.getElementById("msgSubmit").classList.remove('hidden');
+                    document.getElementById("contactForm").reset();
+                }, function (error) {
+                    console.log('FAILED...', error);
+                    document.getElementById("msgSubmit").innerHTML = "Failed to Send Message!";
+                    document.getElementById("msgSubmit").classList.remove('hidden');
+                });
+        }
+        function showMessage(text, colorClass) {
+            const msgDiv = document.getElementById('msgSubmit');
+            msgDiv.classList.remove('hidden');
+            msgDiv.classList.remove('text-green-600', 'text-red-600');
+            msgDiv.classList.add(colorClass);
+            msgDiv.innerText = text;
+        }
+    </script>
+
+    <!-- footer -->
+    <script>
+        const currentYear = new Date().getFullYear();
+        document.getElementById("current-year").innerHTML = currentYear;
+    </script>
+
+    <script>
+        // Wait for the DOM to be fully loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get references to key elements
+            const navbar = document.getElementById("navbar");
+            const mobileMenuButton = document.getElementById("mobile-menu-button");
+            const mobileMenu = document.getElementById("mobile-menu");
+
+            // Initial scroll position
+            let lastScrollTop = 0;
+
+            // Navigation links
+            const navLinks = {
+                desktop: document.querySelectorAll('.hidden.md\\:block a'),
+                mobile: document.querySelectorAll('#mobile-menu a'),
+            };
+
+            // Get current page path
+            const currentPath = window.location.pathname;
+            const currentPage = currentPath.split('/').pop() || 'index.html';
+            const isContactPage = currentPage === 'contact.html';
+            const isAboutPage = currentPage === 'about.html';
+
+            // Get hash if available
+            const currentHash = window.location.hash;
+
+            // Sections for tracking (only on pages with section navigation)
+            const sections = {};
+            if (!isContactPage) {
+                [...navLinks.desktop].forEach((link) => {
+                    const href = link.getAttribute("href");
+                    if (href && href.includes('#') && !href.startsWith('http')) {
+                        const sectionId = href.split('#')[1];
+                        if (sectionId) {
+                            const section = document.getElementById(sectionId);
+                            if (section) sections[sectionId] = section;
+                        }
+                    }
+                });
+            }
+
+            // Toggle mobile menu
+            mobileMenuButton.addEventListener("click", function () {
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            // Function to handle menu toggle - can be called from inline onclick
+            window.handleMenuToggle = function () {
+                mobileMenu.classList.toggle("hidden");
+            };
+
+            // Handle scroll events
+            window.addEventListener("scroll", function () {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                // Navbar animation based on scroll direction
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    // Scrolling down after 100px - make navbar compact
+                    navbar.classList.add("navbar-compact");
+                    navbar.classList.remove("navbar-expanded");
+                } else {
+                    // Scrolling up - expand navbar
+                    navbar.classList.remove("navbar-compact");
+                    navbar.classList.add("navbar-expanded");
+                }
+
+                lastScrollTop = scrollTop;
+
+                // Highlight active section (only on pages with section navigation)
+                if (Object.keys(sections).length > 0) {
+                    highlightActiveSection(scrollTop);
+                }
+            });
+
+            // Handle click on navigation links
+            [...navLinks.desktop, ...navLinks.mobile].forEach((link) => {
+                link.addEventListener("click", function (e) {
+                    const href = this.getAttribute("href");
+
+                    // If it's an external link or different page, let it navigate normally
+                    if (!href || href.startsWith('http') || (href.includes('.html') && !href.includes('#'))) {
+                        return;
+                    }
+
+                    // For same-page section links
+                    if (href.includes('#')) {
+                        const parts = href.split('#');
+                        const pagePart = parts[0];
+                        const hashPart = parts[1];
+
+                        // If it's a link to a section on the current page
+                        if (!pagePart || pagePart === currentPage) {
+                            e.preventDefault();
+                            const targetSection = document.getElementById(hashPart);
+
+                            if (targetSection) {
+                                // Hide mobile menu if open
+                                mobileMenu.classList.add("hidden");
+
+                                // Scroll to section
+                                window.scrollTo({
+                                    top: targetSection.offsetTop - 80, // Adjust for navbar height
+                                    behavior: "smooth",
+                                });
+
+                                // Update URL hash
+                                history.pushState(null, null, `#${hashPart}`);
+
+                                // Update active link
+                                updateActiveLink(hashPart);
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Set active link based on current section or page
+            function updateActiveLink(sectionId = null) {
+                // Remove active class from all links
+                [...navLinks.desktop, ...navLinks.mobile].forEach((link) => {
+                    link.classList.remove("text-primary-700", "border-primary-500");
+                    link.classList.add("text-gray-600", "border-transparent");
+                });
+
+                // First try to match by page path and section
+                [...navLinks.desktop, ...navLinks.mobile].forEach((link) => {
+                    const href = link.getAttribute("href");
+
+                    // If we're matching a specific section
+                    if (sectionId) {
+                        // Check if this link points to the active section
+                        if (href === `#${sectionId}` || href.endsWith(`#${sectionId}`)) {
+                            link.classList.remove("text-gray-600", "border-transparent");
+                            link.classList.add("text-primary-700", "border-primary-500");
+                        }
+                    }
+                    // Otherwise match by page
+                    else {
+                        // On contact page, highlight contact links
+                        if (isContactPage && href.includes('contact.html')) {
+                            link.classList.remove("text-gray-600", "border-transparent");
+                            link.classList.add("text-primary-700", "border-primary-500");
+                        }
+                        // On about page, highlight about links
+                        else if (isAboutPage && href.includes('about.html')) {
+                            link.classList.remove("text-gray-600", "border-transparent");
+                            link.classList.add("text-primary-700", "border-primary-500");
+                        }
+                        // On home page with no hash, highlight home links
+                        else if (currentPage === 'index.html' && (href === 'index.html' || href === './index.html' || href === '/')) {
+                            link.classList.remove("text-gray-600", "border-transparent");
+                            link.classList.add("text-primary-700", "border-primary-500");
+                        }
+                    }
+                });
+            }
+
+            // Determine active section based on scroll position
+            function highlightActiveSection(scrollTop) {
+                let currentSection = "";
+
+                // Find the section currently in view
+                Object.keys(sections).forEach((sectionId) => {
+                    const section = sections[sectionId];
+                    const sectionTop = section.offsetTop - 100; // Adjust for navbar
+                    const sectionBottom = sectionTop + section.offsetHeight;
+
+                    if (scrollTop >= sectionTop && scrollTop < sectionBottom) {
+                        currentSection = sectionId;
+                    }
+                });
+
+                // Update active link if we're in a section
+                if (currentSection) {
+                    updateActiveLink(currentSection);
+                }
+            }
+
+            // Initialize the navbar state
+            function initNavbar() {
+                // Add CSS for navbar animations
+                const style = document.createElement("style");
+                style.textContent = `
+            .navbar-expanded {
+                width: 100%;
+                border-radius: 0;
+            }
+            
+            .navbar-compact {
+                width: 80%;
+                max-width: 1200px;
+                border-radius: 0.75rem;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-top: 12px;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            }
+            
+            @media (max-width: 768px) {
+                .navbar-compact {
+                    width: 90%;
+                }
+            }
+        `;
+                document.head.appendChild(style);
+
+                // Set initial state
+                navbar.classList.add("navbar-expanded");
+
+                // Set initial active state
+                if (Object.keys(sections).length > 0 && currentHash) {
+                    // If we have sections and a hash, try to highlight that section
+                    const sectionId = currentHash.substring(1);
+                    if (sections[sectionId]) {
+                        updateActiveLink(sectionId);
+                    }
+                } else {
+                    // Otherwise just highlight based on current page
+                    updateActiveLink();
+                }
+
+                // If there's a hash on page load, scroll to that section
+                if (currentHash && !isContactPage) {
+                    const sectionId = currentHash.substring(1);
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        setTimeout(() => {
+                            window.scrollTo({
+                                top: section.offsetTop - 80,
+                                behavior: "smooth"
+                            });
+                        }, 100);
+                    }
+                }
+            }
+
+            // Fix for mobile menu button's inline onclick attribute
+            if (mobileMenuButton && mobileMenuButton.getAttribute('onclick') === 'handleMenuToggle') {
+                mobileMenuButton.setAttribute('onclick', 'handleMenuToggle()');
+            }
+
+            // Initialize
+            initNavbar();
+        });
+    </script>
+
+</body>
+
+</html>
