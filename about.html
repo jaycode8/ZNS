@@ -117,10 +117,9 @@
                     </div>
                 </div>
 
-                <!-- Mobile menu button -->
+                <!-- Mobile menu button - Removed inline onclick attribute -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-600 hover:text-primary-500 focus:outline-none"
-                        onclick="handleMenuToggle">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-primary-500 focus:outline-none">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16"></path>
@@ -421,14 +420,11 @@
 
     <script>
         // Wait for the DOM to be fully loaded
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", () => {
             // Get references to key elements
             const navbar = document.getElementById("navbar");
             const mobileMenuButton = document.getElementById("mobile-menu-button");
             const mobileMenu = document.getElementById("mobile-menu");
-
-            // Initial scroll position
-            let lastScrollTop = 0;
 
             // Navigation links
             const navLinks = {
@@ -461,42 +457,148 @@
             }
 
             // Toggle mobile menu
-            mobileMenuButton.addEventListener("click", function () {
+            mobileMenuButton.addEventListener("click", () => {
                 mobileMenu.classList.toggle("hidden");
             });
 
-            // Function to handle menu toggle - can be called from inline onclick
-            window.handleMenuToggle = function () {
-                mobileMenu.classList.toggle("hidden");
+            // Create a header sentinel element to track scroll position for navbar animation
+            const createHeaderSentinel = () => {
+                const sentinel = document.createElement('div');
+                sentinel.setAttribute('aria-hidden', 'true');
+                sentinel.style.position = 'absolute';
+                sentinel.style.top = '0';
+                sentinel.style.height = '100px'; // Threshold for animation
+                sentinel.style.width = '1px';
+                sentinel.style.pointerEvents = 'none';
+                sentinel.style.opacity = '0';
+                document.body.prepend(sentinel);
+                return sentinel;
             };
 
-            // Handle scroll events
-            window.addEventListener("scroll", function () {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            // Set up Intersection Observer for navbar animation
+            const setupNavbarObserver = () => {
+                const headerSentinel = createHeaderSentinel();
 
-                // Navbar animation based on scroll direction
-                if (scrollTop > lastScrollTop && scrollTop > 100) {
-                    // Scrolling down after 100px - make navbar compact
-                    navbar.classList.add("navbar-compact");
-                    navbar.classList.remove("navbar-expanded");
-                } else {
-                    // Scrolling up - expand navbar
-                    navbar.classList.remove("navbar-compact");
-                    navbar.classList.add("navbar-expanded");
-                }
+                const navbarObserver = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach(entry => {
+                            // When sentinel is not visible (scrolled down past threshold)
+                            if (!entry.isIntersecting) {
+                                navbar.classList.add("navbar-compact");
+                                navbar.classList.remove("navbar-expanded");
+                            } else {
+                                // When sentinel is visible (scrolled near top)
+                                navbar.classList.remove("navbar-compact");
+                                navbar.classList.add("navbar-expanded");
+                            }
+                        });
+                    },
+                    {
+                        rootMargin: '-100px 0px 0px 0px', // Start transition at 100px down
+                        threshold: 0
+                    }
+                );
 
-                lastScrollTop = scrollTop;
+                navbarObserver.observe(headerSentinel);
+            };
 
-                // Highlight active section (only on pages with section navigation)
-                if (Object.keys(sections).length > 0) {
-                    highlightActiveSection(scrollTop);
-                }
-            });
+            // Set up Intersection Observer for section highlighting
+            const setupSectionObservers = () => {
+                if (Object.keys(sections).length === 0) return;
+
+                const sectionObserver = new IntersectionObserver(
+                    (entries) => {
+                        // Track sections currently in view
+                        entries.forEach(entry => {
+                            const id = entry.target.id;
+
+                            // Store sections visibility state to handle overlapping sections
+                            if (entry.isIntersecting) {
+                                // Add to visible sections with their intersection ratio
+                                entry.target.dataset.visible = entry.intersectionRatio;
+                            } else {
+                                // Remove from visible sections
+                                entry.target.dataset.visible = "0";
+                            }
+
+                            // Find the section with highest visibility ratio
+                            let highestRatio = 0;
+                            let mostVisibleSection = null;
+
+                            Object.keys(sections).forEach(sectionId => {
+                                const section = sections[sectionId];
+                                const ratio = parseFloat(section.dataset.visible || "0");
+                                if (ratio > highestRatio) {
+                                    highestRatio = ratio;
+                                    mostVisibleSection = sectionId;
+                                }
+                            });
+
+                            // Update active link if we have a visible section
+                            if (mostVisibleSection) {
+                                updateActiveLink(mostVisibleSection);
+                            }
+                        });
+                    },
+                    {
+                        rootMargin: '-80px 0px -20% 0px', // Adjust based on navbar height
+                        threshold: [0, 0.25, 0.5, 0.75, 1]  // Multiple thresholds for better accuracy
+                    }
+                );
+
+                // Observe all sections
+                Object.values(sections).forEach(section => {
+                    // Initialize visibility dataset
+                    section.dataset.visible = "0";
+                    sectionObserver.observe(section);
+                });
+            };
+
+            // Set active link based on current section or page
+            const updateActiveLink = (sectionId = null) => {
+                // Remove active class from all links
+                [...navLinks.desktop, ...navLinks.mobile].forEach((link) => {
+                    link.classList.remove("text-primary-700", "border-primary-500");
+                    link.classList.add("text-gray-600", "border-transparent");
+                });
+
+                // First try to match by page path and section
+                [...navLinks.desktop, ...navLinks.mobile].forEach((link) => {
+                    const href = link.getAttribute("href");
+
+                    // If we're matching a specific section
+                    if (sectionId) {
+                        // Check if this link points to the active section
+                        if (href === `#${sectionId}` || href.endsWith(`#${sectionId}`)) {
+                            link.classList.remove("text-gray-600", "border-transparent");
+                            link.classList.add("text-primary-700", "border-primary-500");
+                        }
+                    }
+                    // Otherwise match by page
+                    else {
+                        // On contact page, highlight contact links
+                        if (isContactPage && href.includes('contact.html')) {
+                            link.classList.remove("text-gray-600", "border-transparent");
+                            link.classList.add("text-primary-700", "border-primary-500");
+                        }
+                        // On about page, highlight about links
+                        else if (isAboutPage && href.includes('about.html')) {
+                            link.classList.remove("text-gray-600", "border-transparent");
+                            link.classList.add("text-primary-700", "border-primary-500");
+                        }
+                        // On home page with no hash, highlight home links
+                        else if (currentPage === 'index.html' && (href === 'index.html' || href === './index.html' || href === '/')) {
+                            link.classList.remove("text-gray-600", "border-transparent");
+                            link.classList.add("text-primary-700", "border-primary-500");
+                        }
+                    }
+                });
+            };
 
             // Handle click on navigation links
             [...navLinks.desktop, ...navLinks.mobile].forEach((link) => {
-                link.addEventListener("click", function (e) {
-                    const href = this.getAttribute("href");
+                link.addEventListener("click", (e) => {
+                    const href = link.getAttribute("href");
 
                     // If it's an external link or different page, let it navigate normally
                     if (!href || href.startsWith('http') || (href.includes('.html') && !href.includes('#'))) {
@@ -535,70 +637,8 @@
                 });
             });
 
-            // Set active link based on current section or page
-            function updateActiveLink(sectionId = null) {
-                // Remove active class from all links
-                [...navLinks.desktop, ...navLinks.mobile].forEach((link) => {
-                    link.classList.remove("text-primary-700", "border-primary-500");
-                    link.classList.add("text-gray-600", "border-transparent");
-                });
-
-                // First try to match by page path and section
-                [...navLinks.desktop, ...navLinks.mobile].forEach((link) => {
-                    const href = link.getAttribute("href");
-
-                    // If we're matching a specific section
-                    if (sectionId) {
-                        // Check if this link points to the active section
-                        if (href === `#${sectionId}` || href.endsWith(`#${sectionId}`)) {
-                            link.classList.remove("text-gray-600", "border-transparent");
-                            link.classList.add("text-primary-700", "border-primary-500");
-                        }
-                    }
-                    // Otherwise match by page
-                    else {
-                        // On contact page, highlight contact links
-                        if (isContactPage && href.includes('contact.html')) {
-                            link.classList.remove("text-gray-600", "border-transparent");
-                            link.classList.add("text-primary-700", "border-primary-500");
-                        }
-                        // On about page, highlight about links
-                        else if (isAboutPage && href.includes('about.html')) {
-                            link.classList.remove("text-gray-600", "border-transparent");
-                            link.classList.add("text-primary-700", "border-primary-500");
-                        }
-                        // On home page with no hash, highlight home links
-                        else if (currentPage === 'index.html' && (href === 'index.html' || href === './index.html' || href === '/')) {
-                            link.classList.remove("text-gray-600", "border-transparent");
-                            link.classList.add("text-primary-700", "border-primary-500");
-                        }
-                    }
-                });
-            }
-
-            // Determine active section based on scroll position
-            function highlightActiveSection(scrollTop) {
-                let currentSection = "";
-
-                // Find the section currently in view
-                Object.keys(sections).forEach((sectionId) => {
-                    const section = sections[sectionId];
-                    const sectionTop = section.offsetTop - 100; // Adjust for navbar
-                    const sectionBottom = sectionTop + section.offsetHeight;
-
-                    if (scrollTop >= sectionTop && scrollTop < sectionBottom) {
-                        currentSection = sectionId;
-                    }
-                });
-
-                // Update active link if we're in a section
-                if (currentSection) {
-                    updateActiveLink(currentSection);
-                }
-            }
-
             // Initialize the navbar state
-            function initNavbar() {
+            const initNavbar = () => {
                 // Add CSS for navbar animations
                 const style = document.createElement("style");
                 style.textContent = `
@@ -653,12 +693,11 @@
                         }, 100);
                     }
                 }
-            }
 
-            // Fix for mobile menu button's inline onclick attribute
-            if (mobileMenuButton && mobileMenuButton.getAttribute('onclick') === 'handleMenuToggle') {
-                mobileMenuButton.setAttribute('onclick', 'handleMenuToggle()');
-            }
+                // Set up observers
+                setupNavbarObserver();
+                setupSectionObservers();
+            };
 
             // Initialize
             initNavbar();
