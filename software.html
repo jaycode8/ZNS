@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./assets/images/logo.jpeg" type="image/x-icon">
+    <title>Zambezi Network Solutions - Software Development</title>
+
+    <!-- Tailwind CSS -->
+    <!--     <script src="https://cdn.tailwindcss.com"></script>-->
+    <script src="./tailwind.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: "#ebf5ff",
+                            100: "#e1effe",
+                            200: "#c3ddfd",
+                            300: "#a4cafe",
+                            400: "#76a9fa",
+                            500: "#3f83f8",
+                            600: "#1c64f2",
+                            700: "#1a56db",
+                            800: "#1e429f",
+                            900: "#233876",
+                        },
+                    },
+                    fontFamily: {
+                        sans: ["Poppins", "sans-serif"],
+                        heading: ["Nunito Sans", "sans-serif"],
+                    }
+                },
+            },
+        };
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+            rel="stylesheet" />
+
+    <!-- Boxicons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+    <style>
+        *{
+            scroll-behavior: smooth;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animate-spin-slow {
+            animation: spin 3s linear infinite;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        /* Preloader fade out */
+        .fade-out {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-gray-800 bg-gray-50">
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 bg-white shadow-md transition-all duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="flex items-center rounded-full overflow-hidden">
+                        <img src="./assets/images/logo.jpeg" alt="Logo" class="h-12 w-auto" />
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="index.html"
+                           class="text-primary-700 font-medium hover:text-primary-500 transition-colors duration-200 px-3 py-2 border-b-2 border-primary-500">Home</a>
+                        <a href="index.html#solutions"
+                           class="text-primary-700 font-medium hover:text-primary-500 transition-colors duration-200 px-3 py-2 border-b-2 border-primary-500">Solutions</a>
+                        <a href="index.html#services-section"
+                           class="text-gray-600 font-medium hover:text-primary-500 transition-colors duration-200 px-3 py-2 border-b-2 border-transparent hover:border-primary-300">Services</a>
+                        <a href="about.html"
+                           class="text-gray-600 font-medium hover:text-primary-500 transition-colors duration-200 px-3 py-2 border-b-2 border-transparent hover:border-primary-300">About
+                            Us</a>
+                        <a href="contact.html"
+                           class="text-gray-600 font-medium hover:text-primary-500 transition-colors duration-200 px-3 py-2 border-b-2 border-transparent hover:border-primary-300">Contact
+                            Us</a>
+                    </div>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-primary-500 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden pb-4">
+                <div class="flex flex-col space-y-2 px-2 pt-2">
+                    <a href="index.html"
+                       class="text-primary-700 font-medium block px-3 py-2 rounded-md hover:bg-primary-50 transition-colors duration-200">Home</a>
+                    <a href="index.html#solutions"
+                       class="text-gray-600 font-medium block px-3 py-2 rounded-md hover:bg-primary-50 transition-colors duration-200">Solutions</a>
+                    <a href="index.html#services-section"
+                       class="text-gray-600 font-medium block px-3 py-2 rounded-md hover:bg-primary-50 transition-colors duration-200">Services</a>
+                    <a href="about.html"
+                       class="text-gray-600 font-medium block px-3 py-2 rounded-md hover:bg-primary-50 transition-colors duration-200">About
+                        Us</a>
+                    <a href="contact.html"
+                       class="text-gray-600 font-medium block px-3 py-2 rounded-md hover:bg-primary-50 transition-colors duration-200">Contact
+                        Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-20">
+        <section class="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800 text-white pb-10 b-0">
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('./assets/images/software-dev.jpg');"></div>
+            </div>
+
+            <div class="container mx-auto px-4 py-24 md:py-32 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-right" data-aos-duration="1000">
+                        <div class="inline-flex items-center bg-primary-700 bg-opacity-50 rounded-full px-4 py-1 mb-6">
+                            <i class="bx bx-code-alt mr-2"></i>
+                            <span class="text-sm font-medium">Software Development Services</span>
+                        </div>
+
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold font-heading leading-tight mb-6">
+                            Custom Software Development Solutions
+                        </h1>
+
+                        <div class="space-y-4 text-lg text-primary-50">
+                            <p>We design and develop innovative software solutions that drive business growth, enhance efficiency, and keep you ahead of the competition.</p>
+                            <p>Our team of expert developers combines technical expertise with strategic thinking to deliver scalable, secure, and future-ready applications tailored to your specific needs.</p>
+                        </div>
+
+                        <div class="mt-8 flex flex-wrap gap-4">
+                            <a href="#dev-services"
+                               class="inline-flex items-center px-6 py-3 rounded-lg bg-white text-primary-700 font-medium hover:bg-primary-50 transition-colors duration-300">
+                                Explore Services
+                                <i class="bx bx-right-arrow-alt ml-2"></i>
+                            </a>
+                            <a href="contact.html"
+                               class="inline-flex items-center px-6 py-3 rounded-lg bg-primary-700 text-white font-medium hover:bg-primary-600 border border-primary-500 transition-colors duration-300">
+                                Request a Quote
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:block">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-primary-400 rounded-full opacity-20 blur-2xl transform -translate-x-4 translate-y-4"></div>
+                            <img src="./assets/images/Software-Development.png" alt="Software Development" class="relative z-10 rounded-lg shadow-2xl w-full h-auto" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 lg:mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 hidden">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 border border-white border-opacity-20 shadow-lg transform hover:-translate-y-1 transition duration-300">
+                        <div class="flex items-center">
+                            <div class="rounded-full bg-primary-700 p-3 mr-4">
+                                <i class="bx bx-code text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold">100+</h3>
+                                <p class="text-primary-100">Projects Delivered</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 border border-white border-opacity-20 shadow-lg transform hover:-translate-y-1 transition duration-300">
+                        <div class="flex items-center">
+                            <div class="rounded-full bg-primary-700 p-3 mr-4">
+                                <i class="bx bx-time text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold">15+</h3>
+                                <p class="text-primary-100">Years Experience</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 border border-white border-opacity-20 shadow-lg transform hover:-translate-y-1 transition duration-300">
+                        <div class="flex items-center">
+                            <div class="rounded-full bg-primary-700 p-3 mr-4">
+                                <i class="bx bx-happy-beaming text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold">98%</h3>
+                                <p class="text-primary-100">Client Satisfaction</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wave Divider -->
+            <div class="absolute bottom-0 left-0 right-0">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" fill="#f9fafb" preserveAspectRatio="none">
+                    <path d="M0,96L80,80C160,64,320,32,480,32C640,32,800,64,960,69.3C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
+                </svg>
+            </div>
+        </section>
+
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4 font-heading">Our Development Approach</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto">We follow a structured methodology that ensures timely delivery of high-quality software solutions that meet your business requirements and exceed your expectations.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-primary-500 cursor-pointer">
+                        <div class="rounded-full bg-primary-50 w-16 h-16 flex items-center justify-center mb-4">
+                            <i class="bx bx-conversation text-3xl text-primary-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">1. Discovery</h3>
+                        <p class="text-gray-600">We understand your business needs, objectives, and challenges to define clear requirements.</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-primary-500 cursor-pointer">
+                        <div class="rounded-full bg-primary-50 w-16 h-16 flex items-center justify-center mb-4">
+                            <i class="bx bx-paint text-3xl text-primary-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">2. Design</h3>
+                        <p class="text-gray-600">We create detailed specifications and intuitive UI/UX designs that align with your brand and user needs.</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-primary-500 cursor-pointer">
+                        <div class="rounded-full bg-primary-50 w-16 h-16 flex items-center justify-center mb-4">
+                            <i class="bx bx-code-block text-3xl text-primary-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">3. Development</h3>
+                        <p class="text-gray-600">Our expert team builds your solution using modern technologies and best practices in software engineering.</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-primary-500 cursor-pointer">
+                        <div class="rounded-full bg-primary-50 w-16 h-16 flex items-center justify-center mb-4">
+                            <i class="bx bx-rocket text-3xl text-primary-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">4. Deployment</h3>
+                        <p class="text-gray-600">We test rigorously, deploy seamlessly, and provide ongoing support and maintenance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dev-services" class="py-28 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4 font-heading">Our Software Development Services</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto">We offer a comprehensive range of software development services to meet your business needs and drive digital transformation.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 text-white rounded-xl shadow-lg overflow-hidden gradient-card cursor-pointer">
+                        <div class="p-6">
+                            <div class="rounded-full bg-white bg-opacity-20 w-16 h-16 flex items-center justify-center mb-4">
+                                <i class="bx bx-globe text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Web Application Development</h3>
+                            <p class="mb-4 text-primary-100">We build responsive, scalable web applications using modern frameworks and technologies that deliver exceptional user experiences.</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="bx bx-check-circle mr-2"></i>
+                                    <span>Progressive Web Apps (PWA)</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bx bx-check-circle mr-2"></i>
+                                    <span>Single Page Applications (SPA)</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bx bx-check-circle mr-2"></i>
+                                    <span>E-commerce Platforms</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 text-white rounded-xl shadow-lg overflow-hidden gradient-card cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                        <div class="p-6">
+                            <div class="rounded-full bg-white bg-opacity-20 w-16 h-16 flex items-center justify-center mb-4">
+                                <i class="bx bx-mobile-alt text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Mobile App Development</h3>
+                            <p class="mb-4 text-primary-100">We create intuitive, feature-rich mobile applications for iOS and Android platforms that engage users and drive business growth.</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="bx bx-check-circle mr-2"></i>
+                                    <span>Native iOS & Android Apps</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bx bx-check-circle mr-2"></i>
+                                    <span>Cross-platform Development</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bx bx-check-circle mr-2"></i>
+                                    <span>App Maintenance & Updates</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 text-white rounded-xl shadow-lg overflow-hidden gradient-card cursor-pointer">
+                        <div class="p-6">
+                            <div class="rounded-full bg-white bg-opacity-20 w-16 h-16 flex items-center justify-center mb-4">
+                                <i class="bx bx-cog text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Custom Software Solutions</h3>
+                            <p class="mb-4 text-primary-100">We develop software solutions tailored to your specific business requirements, automating processes and enhancing productivity.</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="bx bx-check-circle mr-2"></i>
+                                    <span>Enterprise Applications</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bx bx-check-circle mr-2"></i>
+                                    <span>CRM & ERP Systems</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bx bx-check-circle mr-2"></i>
+                                    <span>Business Process Automation</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 text-white rounded-xl shadow-lg overflow-hidden gradient-card cursor-pointer">
+                        <div class="p-6">
+                            <div class="rounded-full bg-white bg-opacity-20 w-16 h-16 flex items-center justify-center mb-4">
+                                <i class="bx bx-shield-quarter text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Software Testing & QA</h3>
+                            <p class="mb-4 text-primary-100">Ensure your software meets the highest standards of reliability, performance, and user experience through rigorous testing processes.</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="bx bx-check-circle mr-2"></i>
+                                    <span>Manual & Automated Testing</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bx bx-check-circle mr-2"></i>
+                                    <span>Bug Tracking & Reporting</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="bx bx-check-circle mr-2"></i>
+                                    <span>Performance & Security Testing</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4 font-heading">Technologies We Use</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto">We leverage cutting-edge technologies and frameworks to build modern, scalable, and efficient software solutions.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center cursor-pointer">
+                        <i class="bx bxl-react text-5xl text-primary-600 mb-3"></i>
+                        <h3 class="font-medium">React</h3>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center cursor-pointer">
+                        <i class="bx bxl-angular text-5xl text-primary-600 mb-3"></i>
+                        <h3 class="font-medium">Angular</h3>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center cursor-pointer">
+                        <i class="bx bxl-nodejs text-5xl text-primary-600 mb-3"></i>
+                        <h3 class="font-medium">Node.js</h3>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center cursor-pointer">
+                        <i class="bx bxl-python text-5xl text-primary-600 mb-3"></i>
+                        <h3 class="font-medium">Python</h3>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center cursor-pointer">
+                        <i class="bx bxl-flutter text-5xl text-primary-600 mb-3"></i>
+                        <h3 class="font-medium">Flutter</h3>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center cursor-pointer">
+                        <i class="bx bxl-aws text-5xl text-primary-600 mb-3"></i>
+                        <h3 class="font-medium">AWS</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="mb-8">
+                            <h2 class="text-3xl md:text-4xl font-bold text-primary-700 mb-4 font-heading">Why Choose Zambezi for Your Software Development Needs</h2>
+                            <p class="text-gray-600">Partner with us to bring your software vision to life with quality, reliability, and innovation that drives business growth.</p>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="flex">
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="rounded-full bg-primary-100 w-12 h-12 flex items-center justify-center">
+                                        <i class="bx bx-bulb text-2xl text-primary-600"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Expert Development Team</h3>
+                                    <p class="text-gray-600">Our team of skilled developers has extensive experience in building complex software solutions across various industries.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex">
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="rounded-full bg-primary-100 w-12 h-12 flex items-center justify-center">
+                                        <i class="bx bx-trending-up text-2xl text-primary-600"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Scalable Solutions</h3>
+                                    <p class="text-gray-600">We build future-ready applications that can scale with your business growth and adapt to changing requirements.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex">
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="rounded-full bg-primary-100 w-12 h-12 flex items-center justify-center">
+                                        <i class="bx bx-shield-quarter text-2xl text-primary-600"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Security-First Approach</h3>
+                                    <p class="text-gray-600">We implement robust security measures and follow best practices to protect your data and applications.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex">
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="rounded-full bg-primary-100 w-12 h-12 flex items-center justify-center">
+                                        <i class="bx bx-time text-2xl text-primary-600"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Timely Delivery</h3>
+                                    <p class="text-gray-600">We adhere to project timelines and ensure on-time delivery without compromising on quality.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:block" data-aos="fade-left" data-aos-duration="1000">
+                        <div class="relative">
+                            <div class="absolute transform translate-x-4 translate-y-4"></div>
+                            <img src="./assets/images/software.png" alt="Why Choose Zambezi" class="relative z-10 w-full h-full" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-primary-700 text-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 font-heading">Ready to Transform Your Business with Custom Software?</h2>
+                    <p class="text-xl text-primary-100 mb-8">Let's discuss your project requirements and explore how our development expertise can help you achieve your business goals.</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="contact.html" class="px-6 py-3 bg-white text-primary-700 font-bold rounded-lg hover:bg-primary-50 transition-colors duration-300">
+                            Contact Us Today
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer Section -->
+        <footer class="bg-gray-900 text-white pt-16 pb-4">
+            <!-- Footer Top -->
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Company Information -->
+                    <div class="mb-10 md:mb-0">
+                        <a href="#" class="inline-block mb-6 rounded-full overflow-hidden">
+                            <img src="./assets/images/logo.jpeg" alt="Zambezi logo" class="h-16 w-auto rounded-md" />
+                        </a>
+                        <p class="text-gray-300 mb-6">Empowering your business with cutting-edge IT solutions.</p>
+                        <p class="text-gray-400 mb-6">Designed and Developed by <a
+                                href="https://www.zambezitechnologies.com"
+                                class="text-blue-400 hover:text-blue-300 transition-colors duration-300">Zambezi Network
+                            Solutions</a></p>
+
+                        <ul class="space-y-4">
+                            <li>
+                                <a href="#"
+                                   class="flex items-center text-gray-300 hover:text-white transition-colors duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-400"
+                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    <address class="not-italic">Kamburu Road, Nairobi, Kenya</address>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tel:+254 11 2948792"
+                                   class="flex items-center text-gray-300 hover:text-white transition-colors duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-400"
+                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
+                                    <span>+254 11 2948792</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mailto:info@zambezitechnologies.com"
+                                   class="flex items-center text-gray-300 hover:text-white transition-colors duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-400"
+                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                    <span>info@zambezitechnologies.com</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="mb-10 md:mb-0">
+                        <h3 class="text-xl font-bold mb-6 relative pl-3 border-l-4 border-blue-500">Company</h3>
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="index.html#service-head"
+                                   class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300"
+                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    Services
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#solutions"
+                                   class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300"
+                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    Solutions
+                                </a>
+                            </li>
+                            <li>
+                                <a href="about.html"
+                                   class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300"
+                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    About us
+                                </a>
+                            </li>
+                            <li>
+                                <a href="contact.html"
+                                   class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300"
+                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    Contact us
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mb-10 md:mb-0">
+                        <h3 class="text-xl font-bold mb-6 mt-0 relative pl-3 border-l-4 border-blue-500">Services</h3>
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="it-#service-head"
+                                   class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300"
+                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    IT Services
+                                </a>
+                            </li>
+                            <li>
+                                <a href="software-#service-head"
+                                   class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300"
+                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    Software Services
+                                </a>
+                            </li>
+                            <li>
+                                <a href="business-#service-head"
+                                   class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         class="h-4 w-4 mr-2 text-red-500 group-hover:translate-x-1 transition-transform duration-300"
+                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    Business Services
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-gray-800 mt-12 pt-6">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <p class="text-gray-400">&copy; <span id="current-year"></span> <a href="#"
+                                                                                       class="text-blue-400 hover:text-blue-300 transition-colors duration-300">Zambezi Network
+                        Solutions Developers</a>. All Rights Reserved</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- footer -->
+    <script>
+        const currentYear = new Date().getFullYear();
+        document.getElementById("current-year").innerHTML = currentYear;
+    </script>
+
+    <script>
+        // Wait for the DOM to be fully loaded
+        document.addEventListener("DOMContentLoaded", () => {
+            // Get references to key elements
+            const navbar = document.getElementById("navbar");
+            const mobileMenuButton = document.getElementById("mobile-menu-button");
+            const mobileMenu = document.getElementById("mobile-menu");
+
+            // Navigation links
+            const navLinks = {
+                desktop: document.querySelectorAll('.hidden.md\\:block a'),
+                mobile: document.querySelectorAll('#mobile-menu a'),
+            };
+
+            // Get current page path
+            const currentPath = window.location.pathname;
+            const currentPage = currentPath.split('/').pop() || 'index.html';
+            const isContactPage = currentPage === 'contact.html';
+            const isAboutPage = currentPage === 'about.html';
+
+            // Get hash if available
+            const currentHash = window.location.hash;
+
+            // Sections for tracking (only on pages with section navigation)
+            const sections = {};
+            if (!isContactPage) {
+                [...navLinks.desktop].forEach((link) => {
+                    const href = link.getAttribute("href");
+                    if (href && href.includes('#') && !href.startsWith('http')) {
+                        const sectionId = href.split('#')[1];
+                        if (sectionId) {
+                            const section = document.getElementById(sectionId);
+                            if (section) sections[sectionId] = section;
+                        }
+                    }
+                });
+            }
+
+            // Toggle mobile menu
+            mobileMenuButton.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            // Create a header sentinel element to track scroll position for navbar animation
+            const createHeaderSentinel = () => {
+                const sentinel = document.createElement('div');
+                sentinel.setAttribute('aria-hidden', 'true');
+                sentinel.style.position = 'absolute';
+                sentinel.style.top = '0';
+                sentinel.style.height = '100px'; // Threshold for animation
+                sentinel.style.width = '1px';
+                sentinel.style.pointerEvents = 'none';
+                sentinel.style.opacity = '0';
+                document.body.prepend(sentinel);
+                return sentinel;
+            };
+
+            // Set up Intersection Observer for navbar animation
+            const setupNavbarObserver = () => {
+                const headerSentinel = createHeaderSentinel();
+
+                const navbarObserver = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach(entry => {
+                            // When sentinel is not visible (scrolled down past threshold)
+                            if (!entry.isIntersecting) {
+                                navbar.classList.add("navbar-compact");
+                                navbar.classList.remove("navbar-expanded");
+                            } else {
+                                // When sentinel is visible (scrolled near top)
+                                navbar.classList.remove("navbar-compact");
+                                navbar.classList.add("navbar-expanded");
+                            }
+                        });
+                    },
+                    {
+                        rootMargin: '-100px 0px 0px 0px', // Start transition at 100px down
+                        threshold: 0
+                    }
+                );
+
+                navbarObserver.observe(headerSentinel);
+            };
+
+            // Set up Intersection Observer for section highlighting
+            const setupSectionObservers = () => {
+                if (Object.keys(sections).length === 0) return;
+
+                const sectionObserver = new IntersectionObserver(
+                    (entries) => {
+                        // Track sections currently in view
+                        entries.forEach(entry => {
+                            const id = entry.target.id;
+
+                            // Store sections visibility state to handle overlapping sections
+                            if (entry.isIntersecting) {
+                                // Add to visible sections with their intersection ratio
+                                entry.target.dataset.visible = entry.intersectionRatio;
+                            } else {
+                                // Remove from visible sections
+                                entry.target.dataset.visible = "0";
+                            }
+
+                            // Find the section with highest visibility ratio
+                            let highestRatio = 0;
+                            let mostVisibleSection = null;
+
+                            Object.keys(sections).forEach(sectionId => {
+                                const section = sections[sectionId];
+                                const ratio = parseFloat(section.dataset.visible || "0");
+                                if (ratio > highestRatio) {
+                                    highestRatio = ratio;
+                                    mostVisibleSection = sectionId;
+                                }
+                            });
+
+                            // Update active link if we have a visible section
+                            if (mostVisibleSection) {
+                                updateActiveLink(mostVisibleSection);
+                            }
+                        });
+                    },
+                    {
+                        rootMargin: '-80px 0px -20% 0px', // Adjust based on navbar height
+                        threshold: [0, 0.25, 0.5, 0.75, 1]  // Multiple thresholds for better accuracy
+                    }
+                );
+
+                // Observe all sections
+                Object.values(sections).forEach(section => {
+                    // Initialize visibility dataset
+                    section.dataset.visible = "0";
+                    sectionObserver.observe(section);
+                });
+            };
+
+            // Set active link based on current section or page
+            const updateActiveLink = (sectionId = null) => {
+                // Remove active class from all links
+                [...navLinks.desktop, ...navLinks.mobile].forEach((link) => {
+                    link.classList.remove("text-primary-700", "border-primary-500");
+                    link.classList.add("text-gray-600", "border-transparent");
+                });
+
+                // First try to match by page path and section
+                [...navLinks.desktop, ...navLinks.mobile].forEach((link) => {
+                    const href = link.getAttribute("href");
+
+                    // If we're matching a specific section
+                    if (sectionId) {
+                        // Check if this link points to the active section
+                        if (href === `#${sectionId}` || href.endsWith(`#${sectionId}`)) {
+                            link.classList.remove("text-gray-600", "border-transparent");
+                            link.classList.add("text-primary-700", "border-primary-500");
+                        }
+                    }
+                    // Otherwise match by page
+                    else {
+                        // On contact page, highlight contact links
+                        if (isContactPage && href.includes('contact.html')) {
+                            link.classList.remove("text-gray-600", "border-transparent");
+                            link.classList.add("text-primary-700", "border-primary-500");
+                        }
+                        // On about page, highlight about links
+                        else if (isAboutPage && href.includes('about.html')) {
+                            link.classList.remove("text-gray-600", "border-transparent");
+                            link.classList.add("text-primary-700", "border-primary-500");
+                        }
+                        // On home page with no hash, highlight home links
+                        else if (currentPage === 'index.html' && (href === 'index.html' || href === './index.html' || href === '/')) {
+                            link.classList.remove("text-gray-600", "border-transparent");
+                            link.classList.add("text-primary-700", "border-primary-500");
+                        }
+                    }
+                });
+            };
+
+            // Handle click on navigation links
+            [...navLinks.desktop, ...navLinks.mobile].forEach((link) => {
+                link.addEventListener("click", (e) => {
+                    const href = link.getAttribute("href");
+
+                    // If it's an external link or different page, let it navigate normally
+                    if (!href || href.startsWith('http') || (href.includes('.html') && !href.includes('#'))) {
+                        return;
+                    }
+
+                    // For same-page section links
+                    if (href.includes('#')) {
+                        const parts = href.split('#');
+                        const pagePart = parts[0];
+                        const hashPart = parts[1];
+
+                        // If it's a link to a section on the current page
+                        if (!pagePart || pagePart === currentPage) {
+                            e.preventDefault();
+                            const targetSection = document.getElementById(hashPart);
+
+                            if (targetSection) {
+                                // Hide mobile menu if open
+                                mobileMenu.classList.add("hidden");
+
+                                // Scroll to section
+                                window.scrollTo({
+                                    top: targetSection.offsetTop - 80, // Adjust for navbar height
+                                    behavior: "smooth",
+                                });
+
+                                // Update URL hash
+                                history.pushState(null, null, `#${hashPart}`);
+
+                                // Update active link
+                                updateActiveLink(hashPart);
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Initialize the navbar state
+            const initNavbar = () => {
+                // Add CSS for navbar animations
+                const style = document.createElement("style");
+                style.textContent = `
+            .navbar-expanded {
+                width: 100%;
+                border-radius: 0;
+            }
+
+            .navbar-compact {
+                width: 80%;
+                max-width: 1200px;
+                border-radius: 0.75rem;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-top: 12px;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            }
+
+            @media (max-width: 768px) {
+                .navbar-compact {
+                    width: 90%;
+                }
+            }
+        `;
+                document.head.appendChild(style);
+
+                // Set initial state
+                navbar.classList.add("navbar-expanded");
+
+                // Set initial active state
+                if (Object.keys(sections).length > 0 && currentHash) {
+                    // If we have sections and a hash, try to highlight that section
+                    const sectionId = currentHash.substring(1);
+                    if (sections[sectionId]) {
+                        updateActiveLink(sectionId);
+                    }
+                } else {
+                    // Otherwise just highlight based on current page
+                    updateActiveLink();
+                }
+
+                // If there's a hash on page load, scroll to that section
+                if (currentHash && !isContactPage) {
+                    const sectionId = currentHash.substring(1);
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        setTimeout(() => {
+                            window.scrollTo({
+                                top: section.offsetTop - 80,
+                                behavior: "smooth"
+                            });
+                        }, 100);
+                    }
+                }
+
+                // Set up observers
+                setupNavbarObserver();
+                setupSectionObservers();
+            };
+
+            // Initialize
+            initNavbar();
+        });
+    </script>
+
+</body>
+
+</html>
